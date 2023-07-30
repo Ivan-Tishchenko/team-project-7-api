@@ -7,9 +7,12 @@ const deleteContact = require("../../contacts/deleteContact");
 const updateContact = require("../../contacts/updateContact");
 const updateFavorite = require("../../contacts/updateFavorite");
 
+const handleJwtControler = require("../../helpers/hendleJwtControler");
+const hendleJwtControler = require("../../helpers/hendleJwtControler");
+
 const router = express.Router();
 
-router.get("/", getAllContacts);
+router.get("/",hendleJwtControler, getAllContacts);
 
 router.get("/:contactId", getContactById);
 
@@ -19,6 +22,10 @@ router.delete("/:contactId", deleteContact);
 
 router.put("/:contactId", updateContact);
 
-router.patch("/:contactId/favorite", updateFavorite);
+router.patch(
+  "/:contactId/favorite",
+  handleJwtControler,
+  updateFavorite
+);
 
 module.exports = router;

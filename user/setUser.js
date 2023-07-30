@@ -24,7 +24,12 @@ const setUser = async (req, res, next) => {
     };
 
     const user = await User.create(userData);
-    res.status(201).json(user);
+    res.status(201).json({
+      user: {
+        email: req.body.email,
+        subscription: user.subscription,
+      },
+    });
   } catch (error) {
     console.error("Error creating user", error);
     res.status(error.status).json(error.message);

@@ -2,8 +2,6 @@ const { Schema, model } = require("mongoose");
 
 const hendleMongodbError = require("../helpers/hendleMongodbError");
 
-// const bCrypt = require("bcryptjs");
-
 const Joi = require("joi");
 
 const emailRegexp =
@@ -19,7 +17,6 @@ const userSchema = new Schema(
     email: {
       type: String,
       match: emailRegexp,
-      unique: [true, "email in use"],
       required: [true, "Email is required"],
       unique: true,
     },
@@ -48,17 +45,6 @@ const joiUserSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
   password: Joi.string().min(6).required(),
 });
-
-// userSchema.methods.setPassword = function (password) {
-//   this.password = bCrypt.hashSync(
-//     password,
-//     bCrypt.genSaltSync(6)
-//   );
-// };
-
-// userSchema.methods.validPassword = function (password) {
-//   return bCrypt.compareSync(password, this.password);
-// };
 
 const User = model("user", userSchema);
 
