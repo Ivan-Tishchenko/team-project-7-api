@@ -2,6 +2,8 @@ const { User, joiUserSchema } = require("../models/user");
 
 const { createHashPassword } = require("./index");
 
+const gravatar = require("gravatar");
+
 const setUser = async (req, res, next) => {
   try {
     const { error } = joiUserSchema.validate(req.body);
@@ -18,9 +20,12 @@ const setUser = async (req, res, next) => {
       .then((data) => data)
       .catch((error) => console.log(error.message));
 
+    const avatarURL = gravatar.url(req.body.email);
+
     const userData = {
       email: req.body.email,
       password,
+      avatarURL,
     };
 
     const user = await User.create(userData);
@@ -28,6 +33,7 @@ const setUser = async (req, res, next) => {
       user: {
         email: req.body.email,
         subscription: user.subscription,
+        avatarURL,
       },
     });
   } catch (error) {

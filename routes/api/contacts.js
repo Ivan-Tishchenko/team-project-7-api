@@ -7,8 +7,8 @@ const deleteContact = require("../../contacts/deleteContact");
 const updateContact = require("../../contacts/updateContact");
 const updateFavorite = require("../../contacts/updateFavorite");
 
-const handleJwtControler = require("../../helpers/hendleJwtControler");
-const hendleJwtControler = require("../../helpers/hendleJwtControler");
+const handleJwtControler = require("../../midlewares/hendleJwtControler");
+const hendleJwtControler = require("../../midlewares/hendleJwtControler");
 
 const router = express.Router();
 
