@@ -1,6 +1,9 @@
+const { nanoid } = require("nanoid");
 const { User, joiUserSchema } = require("../models/user");
 
 const { createHashPassword } = require("./index");
+
+const sendMail = require("../email/sendMail");
 
 const gravatar = require("gravatar");
 
@@ -26,9 +29,16 @@ const setUser = async (req, res, next) => {
       email: req.body.email,
       password,
       avatarURL,
+      verificationToken: nanoid(),
     };
 
     const user = await User.create(userData);
+
+    await sendMail(
+      userData.email,
+      userData.verificationToken
+    );
+
     res.status(201).json({
       user: {
         email: req.body.email,

@@ -25,6 +25,11 @@ const loginUser = async (req, res, next) => {
       return;
     }
 
+    if (!user.verificationToken) {
+      res.status(404);
+      return;
+    }
+
     const isPasswordTrue = await compareHashPassword(
       req.body.password,
       user.password
