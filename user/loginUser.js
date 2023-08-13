@@ -25,7 +25,7 @@ const loginUser = async (req, res, next) => {
       return;
     }
 
-    if (!user.verificationToken) {
+    if (!user.verify) {
       res.status(404);
       return;
     }

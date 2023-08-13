@@ -37,7 +37,7 @@ const setUser = async (req, res, next) => {
     await sendMail(
       userData.email,
       userData.verificationToken
-    );
+    ).catch(console.error);
 
     res.status(201).json({
       user: {

@@ -15,14 +15,12 @@ async function sendMail(email, verificationToken) {
   const info = await transporter.sendMail({
     from: `"node.js api " <vati5@ukr.net>`,
     to: email,
-    subject: "Hello ✔",
-    text: "Hello world?",
+    subject: "Verify",
+    text: "please click verify",
     html: `<a href="http://localhost:3000/api/users/verify/${verificationToken}">verify</a>`,
   });
 
   return info;
 }
-
-sendMail().catch(console.error);
 
 module.exports = sendMail;
