@@ -1,13 +1,10 @@
 const app = require("./app");
 const mongoose = require("mongoose");
 
-const DB_HOST =
-  "mongodb+srv://ivan4tishchenko:gv34Nf8DYwFdsHYf@cluster0.vguf3lu.mongodb.net/db-contacts?retryWrites=true&w=majority";
-
 mongoose.set("strictQuery", true);
 
 mongoose
-  .connect(DB_HOST)
+  .connect(process.env.DB_HOST)
   .then(() => {
     app.listen(3000, () => {
       console.log(

@@ -4,13 +4,12 @@ const setUser = require("../../user/setUser");
 const loginUser = require("../../user/loginUser");
 const logoutUser = require("../../user/logoutUser");
 const getUser = require("../../user/getUser");
-const verifyUser = require("../../user/verifyUser");
-const resendEmail = require("../../user/resendEmail")
+const updateUser = require("../../user/updateUser")
+// const verifyUser = require("../../user/verifyUser");
+// const resendEmail = require("../../user/resendEmail")
 
 const hendleJwtControler = require("../../midlewares/hendleJwtControler");
-const setNewAvatar = require("../../user/setNewAvatsr");
 
-const upload = require("../../midlewares/hendleAvatar");
 
 const router = express.Router();
 
@@ -23,14 +22,13 @@ router.post("/logout", logoutUser);
 router.get("/current", hendleJwtControler, getUser);
 
 router.patch(
-  "/avatars",
+  "/user",
   hendleJwtControler,
-  upload.single("picture"),
-  setNewAvatar
+  updateUser
 );
 
-router.get("/verify/:verificationTocen", verifyUser);
+// router.get("/verify/:verificationTocen", verifyUser);
 
-router.post("/verify", resendEmail)
+// router.post("/verify", resendEmail)
 
 module.exports = router;

@@ -1,15 +1,15 @@
 const {
-  addContactSchema,
-} = require("../models/contact");
+  addContactSchema:  addTaskSchema,
+} = require("../models/tasks");
 
-const updateContactData = require("./index")
+const updateTaskData = require("./index")
 
 const updateContact = async (req, res, next) => {
-  const id = req.params.contactId;
+  const id = req.params.Id;
   const body = req.body;
   try {
     const newData = req.body;
-    const { error } = addContactSchema.validate(newData);
+    const { error } =  addTaskSchema.validate(newData);
     if (error) {
       res
         .status(400)
@@ -17,7 +17,7 @@ const updateContact = async (req, res, next) => {
       return;
     }
 
-    const contact = await updateContactData(id, body);
+    const contact = await updateTaskData(id, body);
 
     if (!contact) {
       res.status(404).json({ message: "Not found" });

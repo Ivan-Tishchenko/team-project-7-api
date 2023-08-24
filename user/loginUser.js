@@ -1,6 +1,6 @@
 const { User, joiUserSchema } = require("../models/user");
 
-const { compareHashPassword } = require("./index");
+const { compareHashPassword } = require("../helpers/comparePassword");
 
 const { createJWT } = require("./jwt");
 

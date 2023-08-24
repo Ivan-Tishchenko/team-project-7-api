@@ -1,9 +1,9 @@
 const { nanoid } = require("nanoid");
 const { User, joiUserSchema } = require("../models/user");
 
-const { createHashPassword } = require("./index");
+const { createHashPassword } = require("../helpers/hashPassword");
 
-const sendMail = require("../email/sendMail");
+const sendMail = require("../services/email/sendMail");
 
 const gravatar = require("gravatar");
 
