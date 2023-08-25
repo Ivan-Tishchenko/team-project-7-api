@@ -20,6 +20,11 @@ const userSchema = new Schema(
       required: [true, "Email is required"],
       unique: true,
     },
+    name: {
+      type: String,
+      required: true,
+      unique: true,
+    },
     subscription: {
       type: String,
       enum: ["starter", "pro", "business"],
@@ -37,14 +42,6 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "user",
     },
-    verify: {
-      type: Boolean,
-      default: false,
-    },
-    verificationToken: {
-      type: String,
-      required: [true, "Verify token is required"],
-    },
   },
   {
     versionKey: false,
@@ -55,10 +52,11 @@ userSchema.post("save", hendleMongodbError);
 
 const joiUserSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
-  password: Joi.string().min(6).required(),
+  password: Joi.string().min(8).required(),
+  name: Joi.string().required(),
 });
 
-const User = model("user", userSchema);
+const User = model("users", userSchema);
 
 module.exports = {
   User,

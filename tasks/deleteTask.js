@@ -1,11 +1,11 @@
 const { Task } = require("../models/tasks");
 
 const deleteTask = async (req, res, next) => {
-  const contact = await Task.findOneAndDelete({
+  const task = await Task.findOneAndDelete({
     _id: req.params.Id,
   });
-  if (contact) {
-    res.send(contact);
+  if (task) {
+    res.send(task);
   } else {
     res.status(404);
     res.send({ message: "Not found" });

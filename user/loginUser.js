@@ -1,6 +1,8 @@
 const { User, joiUserSchema } = require("../models/user");
 
-const { compareHashPassword } = require("../helpers/comparePassword");
+const {
+  compareHashPassword,
+} = require("../helpers/comparePassword");
 
 const { createJWT } = require("./jwt");
 
@@ -22,11 +24,6 @@ const loginUser = async (req, res, next) => {
       res.status(401).json({
         message: "Email or password is wrong",
       });
-      return;
-    }
-
-    if (!user.verify) {
-      res.status(404);
       return;
     }
 
@@ -54,15 +51,15 @@ const loginUser = async (req, res, next) => {
     res.status(201).json({
       token,
       user: {
+        name: user.name,
         email: user.email,
         subscription: user.subscription,
+        avatarURL: user.avatarURL,
       },
     });
   } catch (error) {
-    console.error("Error creating user", error);
-    res
-      .status(500)
-      .json({ message: "Error creating user" });
+    console.error("Error login user", error);
+    res.status(500).json({ message: "Error login user" });
   }
 };
 

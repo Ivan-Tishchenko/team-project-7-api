@@ -1,19 +1,20 @@
 const jwt = require("jsonwebtoken");
 
-const SECRET_WORD = "secretWord";
-
 const createJWT = (payload) => {
-  const token = jwt.sign(payload, SECRET_WORD);
+  const token = jwt.sign(payload, process.env.SECRET_WORD);
   return token;
 };
 
 const verificationJWT = (token) => {
-  const isJwtTrue = jwt.verify(token, SECRET_WORD);
+  const isJwtTrue = jwt.verify(
+    token,
+    process.env.SECRET_WORD
+  );
   return isJwtTrue;
 };
 
 const decodeJwt = (token) => {
   return jwt.decode(token);
-}
+};
 
-module.exports = {createJWT, verificationJWT, decodeJwt}
+module.exports = { createJWT, verificationJWT, decodeJwt };

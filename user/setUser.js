@@ -1,11 +1,12 @@
-const { nanoid } = require("nanoid");
 const { User, joiUserSchema } = require("../models/user");
 
-const { createHashPassword } = require("../helpers/hashPassword");
-
-const sendMail = require("../services/email/sendMail");
+const {
+  createHashPassword,
+} = require("../helpers/hashPassword");
 
 const gravatar = require("gravatar");
+
+const { createJWT } = require("./jwt");
 
 const setUser = async (req, res, next) => {
   try {
@@ -25,22 +26,25 @@ const setUser = async (req, res, next) => {
 
     const avatarURL = gravatar.url(req.body.email);
 
+    const token = createJWT({
+      id: req.body.id,
+      email: req.body.email,
+    });
+
     const userData = {
+      name: req.body.name,
       email: req.body.email,
       password,
       avatarURL,
-      verificationToken: nanoid(),
+      token,
     };
 
     const user = await User.create(userData);
 
-    await sendMail(
-      userData.email,
-      userData.verificationToken
-    ).catch(console.error);
-
     res.status(201).json({
+      token,
       user: {
+        name: req.body.name,
         email: req.body.email,
         subscription: user.subscription,
         avatarURL,
