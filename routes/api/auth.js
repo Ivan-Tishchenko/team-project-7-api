@@ -7,6 +7,7 @@ const getUser = require("../../user/getUser");
 const updateUser = require("../../user/updateUser");
 
 const hendleJwtControler = require("../../midlewares/hendleJwtControler");
+const upload = require("../../midlewares/cloudinary/upload");
 
 const router = express.Router();
 
@@ -18,6 +19,11 @@ router.post("/logout", hendleJwtControler, logoutUser);
 
 router.get("/current", hendleJwtControler, getUser);
 
-router.patch("/user", hendleJwtControler, updateUser);
+router.patch(
+  "/user",
+  hendleJwtControler,
+  upload.single("avatar"),
+  updateUser
+);
 
 module.exports = router;
