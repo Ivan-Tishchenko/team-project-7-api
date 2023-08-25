@@ -1,8 +1,8 @@
 const { Task } = require("../models/tasks");
 
-async function updateTaskData(contactId, body) {
+async function updateTaskData(id, body) {
   return await Task.findOneAndUpdate(
-    { _id: contactId },
+    { _id: id },
     body,
     { new: true }
   );

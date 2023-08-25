@@ -1,11 +1,11 @@
 const {
   Task,
-  addContactSchema,
+  addTaskSchema,
 } = require("../models/tasks");
 
 const addTask = async (req, res, next) => {
   try {
-    const { error } = addContactSchema.validate(req.body);
+    const { error } = addTaskSchema.validate(req.body);
     if (error) {
       res
         .status(400)

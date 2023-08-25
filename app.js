@@ -5,7 +5,7 @@ const cors = require("cors");
 require("dotenv").config();
 
 const userRouter = require("./routes/api/auth");
-const contactsRouter = require("./routes/api/tasks");
+const TasksRouter = require("./routes/api/tasks");
 const reviewsRouter = require("./routes/api/reviews");
 
 const app = express();
@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-app.use("/api/tasks", contactsRouter);
+app.use("/api/tasks", TasksRouter);
 app.use("/api/users", userRouter);
 app.use("api/reviews", reviewsRouter);
 
