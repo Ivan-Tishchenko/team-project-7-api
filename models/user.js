@@ -52,7 +52,7 @@ userSchema.post("save", hendleMongodbError);
 
 const joiUserSchema = Joi.object({
   email: Joi.string().pattern(emailRegexp).required(),
-  password: Joi.string().min(6).required(),
+  password: Joi.string().min(8).required(),
   name: Joi.string().required(),
 });
 

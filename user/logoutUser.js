@@ -1,13 +1,7 @@
 const { User } = require("../models/user");
 
-const { decodeJwt } = require("./jwt");
-
 const logoutUser = async (req, res, next) => {
-  const [, token] = req.headers.authorization.split(" ");
-
-  const { email, id } = decodeJwt(token);
-
-  console.log(email);
+  const { id } = req.user;
 
   const user = await User.findOneAndUpdate(
     { _id: id },
@@ -19,7 +13,12 @@ const logoutUser = async (req, res, next) => {
     res.status(204);
   }
 
-  res.status(201).json(user);
+  res.status(201).json({
+    id: user.id,
+    email: user.email,
+    name: user.name,
+    avatarUrl: user.avatarURL,
+  });
 };
 
 module.exports = logoutUser;

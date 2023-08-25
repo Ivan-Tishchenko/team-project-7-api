@@ -11,22 +11,22 @@ const hendleJwtControler = async (req, res, next) => {
   const isTokenValid = verificationJWT(token);
   if (!isTokenValid) {
     res.status(401).json({
-      message: "Not authorized",
+      message: "Not authorized123",
     });
     return;
   }
 
-  const { id } = decodeJwt(token);
+  const { email } = decodeJwt(token);
 
-  const user = await User.findOne({ _id: id });
+  const user = await User.findOne({ email });
 
-  if (user && user.token === token) {
+  if (!!user && user.token === token) {
     req.user = user;
     next();
     return;
   }
 
-  return res.status(401).json({
+  res.status(401).json({
     message: "Not authorized",
   });
 };
