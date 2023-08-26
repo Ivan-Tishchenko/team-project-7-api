@@ -11,7 +11,7 @@
   },
   "consumes": ["application/json"],
   "produces": ["application/json"],
-  "servers": [{ "url": "http://localhost:3000" }, { "url": "http://localhost:3030" }],
+  "servers": [{ "url": "group-project-7.onrender.com" }, { "url": "http://localhost:3000" }],
   "tags": [
     {
       "name": "Auth",
@@ -789,8 +789,106 @@
           "email": "example@mail.com"
         }
       },
-      "UpdateUserRequest": {},
-      "UpdateUserResponse": {},
+      "UpdateUserRequest": {
+        "type": "object",
+        "properties":{
+          "name": {
+            "type": "string",
+            "description": "User's new name",
+            "minLength": 2,
+            "maxLength": 100
+           },
+          "email": {
+            "type": "string",
+            "description": "User's new email",
+            "format": "email",
+            "minLength": 3,
+            "maxLength": 30
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's new phone number",
+            "example": "+380972563477"           
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's new birthday in format DD/MM/YYYY",
+            "example": "25/08/1995"
+          },
+          "skype": {
+            "type": "string",
+            "description": "User's new Skype login",
+            "example": "skypeusername"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User's new avatar URL",
+            "example": "31f3bfggn51fh32133jm312cfg13.jpg"
+          }
+        }
+      },
+      "UpdateUserResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's updated name",
+            "minLength": 2,
+            "maxLength": 100
+          },
+          "email": {
+            "type": "string",
+            "description": "User's updated email",
+            "format": "email",
+            "minLength": 3,
+            "maxLength": 30
+          },
+          "phone": {
+            "type": "string",
+            "description": "User's updated phone number",
+            "example": "+380972563477"
+          },
+          "birthday": {
+            "type": "string",
+            "description": "User's updated birthday in format DD/MM/YYYY",
+            "example": "25/08/1995"
+          },
+          "skype": {
+            "type": "string",
+            "description": "User's updated Skype login",
+            "example": "skypeusername"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User's updated avatar URL",
+            "example": "31f3bfggn51fh32133jm312cfg13.jpg"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updating user's data",
+            "example": "2023-08-27T10:30:30.547Z"
+          }
+        },
+        "example": {
+          "_id": "64bbdccc1f9a9abd2d63f28e",
+          "name": "Updated Name",
+          "email": "updated@example.com",
+          "createdAt": "2023-08-26T09:30:30.547Z",
+          "updatedAt": "2023-08-27T10:30:30.547Z"
+        }
+      },
       "GetAllReviewsResponse": {},
       "GetOwnReviewResponse": {},
       "CreateOwnReviewRequest": {},
