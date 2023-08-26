@@ -1,0 +1,818 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "version": "1.0.5",
+    "title": "Swagger test",
+    "description": "Showing off swagger-ui-express",
+    "license": {
+      "name": "MIT",
+      "url": "https://opensource.org/licenses/MIT"
+    }
+  },
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "servers": [{ "url": "http://localhost:3000" }, { "url": "http://localhost:3030" }],
+  "tags": [
+    {
+      "name": "Auth",
+      "description": "Authorization endpoints"
+    },
+    {
+      "name": "Users",
+      "description": "Users endpoints"
+    },
+    {
+      "name": "Reviews",
+      "description": "Reviews endpoints"
+    },
+    {
+      "name": "Tasks",
+      "description": "Tasks endpoints"
+    }
+  ],
+  "paths": {
+    "/auth/register": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User registration",
+        "parameters": [],
+        "requestBody": {
+          "description": "Registration's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegistrationRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegistrationResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required name field",
+            "content": {}
+          },
+          "409": {
+            "description": "Email in use",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/login": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User authentication",
+        "parameters": [],
+        "requestBody": {
+          "description": "Authentication's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LoginResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required name field",
+            "content": {}
+          },
+          "401": {
+            "description": "Email or password is wrong",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/auth/logout": {
+      "post": {
+        "tags": ["Auth"],
+        "summary": "User logout",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "204": {
+            "description": "Successful operation",
+            "content": {}
+          },
+           "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/current": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Get current user",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "200": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetCurrentUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required name field",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Invalid user",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/users/edit": {
+      "patch": {
+        "tags": ["Users"],
+        "summary": "Update user's data",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "User object with updated information",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateUserRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateUserResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Missing required name field",
+            "content": {}
+          },
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "409": {
+            "description": "Email in use",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/reviews": {
+      "get": {
+        "tags": ["Reviews"],
+        "summary": "Get all reviews",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllReviewsResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/reviews/own": {
+      "get": {
+        "tags": ["Reviews"],
+        "summary": "Get own review",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetOwnReviewResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": ["Reviews"],
+        "summary": "Create own review",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Review's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateOwnReviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateOwnReviewResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      },
+      "patch": {
+        "tags": ["Reviews"],
+        "summary": "Update own review",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Review's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateOwnReviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateOwnReviewResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Reviews"],
+        "summary": "Delete own review",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Review's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteOwnReviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteOwnReviewResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/tasks": {
+      "get": {
+        "tags": ["Tasks"],
+        "summary": "Get tasks for the month",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetTasksResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      },
+      "post": {
+        "tags": ["Tasks"],
+        "summary": "Create task",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Task's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreatTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatTaskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      }
+    },
+    "/tasks/{taskId}": {
+      "patch": {
+        "tags": ["Tasks"],
+        "summary": "Update task",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Task's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateTaskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      },
+      "delete": {
+        "tags": ["Tasks"],
+        "summary": "Delete task",
+        "parameters": [],
+        "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Task's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DeleteTaskRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Successful operation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteTaskResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request (invalid request body)",
+            "content": {}
+          },
+          "409": {
+            "description": "Provided email already exists",
+            "content": {}
+          }
+        }
+      }
+    }
+
+  },
+  "components": {
+    "schemas": {
+      "RegistrationRequest": {
+        "type": "object",
+        "required": ["email", "password", "name"],
+        "properties": {
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Nadiia Doe",
+            "minLength": 2,
+            "maxLength": 100
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "minLength": 3,
+            "maxLength": 30
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123",
+            "minLength": 8,
+            "maxLength": 100
+          }
+        }
+      },
+      "RegistrationResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Nadiia Doe",
+            "minLength": 2,
+            "maxLength": 100
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "minLength": 3,
+            "maxLength": 30
+          },
+          "phone": {
+            "type": "string",
+            "default": null,
+            "description": "User's phone number",
+            "example": "+380972563477"
+          },
+          "birthday": {
+            "type": "string",
+            "default": null,
+            "description": "User's birthday in format DD/MM/YYYY",
+            "example": "25/08/1995"
+          },
+          "skype": {
+            "type": "string",
+            "default": null,
+            "description": "User's Skype login",
+            "example": "skypeusername"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User's avatar",
+            "example": "31f3bfggn51fh32133jm312cfg13.jpg"
+          },
+          "token": {
+            "type": "string",
+            "default": null,
+            "description": "User's token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJydXNsYW5AbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2OTE3NDQ1OTYsImV4cCI6MTY5MTgzMDk5Nn0.86dB5MkOB8XTj13jrQ6yqVU0C0-mBCUrY54lKc1xdFA"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          }
+        },
+        "example":{ 
+          "_id": "3214ffgg323243e65nb45474",
+          "name": "Nadiia Doe",
+          "email": "example@mail.com"
+        }
+      },
+      "LoginRequest": {
+        "type": "object",
+        "required": ["email", "password"],
+        "properties": {
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "minLength": 3,
+            "maxLength": 30
+          },
+          "password": {
+            "type": "string",
+            "description": "User's password",
+            "example": "qwerty123",
+            "minLength": 8,
+            "maxLength": 100
+          }
+        }
+      },
+      "LoginResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Nadiia Doe",
+            "minLength": 2,
+            "maxLength": 100
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "minLength": 3,
+            "maxLength": 30
+          },
+          "phone": {
+            "type": "string",
+            "default": null,
+            "description": "User's phone number",
+            "example": "+380972563477"
+          },
+          "birthday": {
+            "type": "string",
+            "default": null,
+            "description": "User's birthday in format DD/MM/YYYY",
+            "example": "25/08/1995"
+          },
+          "skype": {
+            "type": "string",
+            "default": null,
+            "description": "User's Skype login",
+            "example": "skypeusername"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User's avatar",
+            "example": "31f3bfggn51fh32133jm312cfg13.jpg"
+          },
+          "token": {
+            "type": "string",
+            "default": null,
+            "description": "User's token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJydXNsYW5AbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2OTE3NDQ1OTYsImV4cCI6MTY5MTgzMDk5Nn0.86dB5MkOB8XTj13jrQ6yqVU0C0-mBCUrY54lKc1xdFA"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          }
+        },
+        "example":{ 
+          "_id": "3214ffgg323243e65nb45474",
+          "name": "Nadiia Doe",
+          "email": "example@mail.com"
+        }
+      },
+      "GetCurrentUserResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "User's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "example": "Nadiia Doe",
+            "minLength": 2,
+            "maxLength": 100
+          },
+          "email": {
+            "type": "string",
+            "description": "User's email",
+            "format": "email",
+            "minLength": 3,
+            "maxLength": 30
+          },
+          "phone": {
+            "type": "string",
+            "default": null,
+            "description": "User's phone number",
+            "example": "+380972563477"
+          },
+          "birthday": {
+            "type": "string",
+            "default": null,
+            "description": "User's birthday in format DD/MM/YYYY",
+            "example": "25/08/1995"
+          },
+          "skype": {
+            "type": "string",
+            "default": null,
+            "description": "User's Skype login",
+            "example": "skypeusername"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User's avatar",
+            "example": "31f3bfggn51fh32133jm312cfg13.jpg"
+          },
+          "token": {
+            "type": "string",
+            "default": null,
+            "description": "User's token",
+            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJydXNsYW5AbWFpbC5jb20iLCJyb2xlIjoiQURNSU4iLCJpYXQiOjE2OTE3NDQ1OTYsImV4cCI6MTY5MTgzMDk5Nn0.86dB5MkOB8XTj13jrQ6yqVU0C0-mBCUrY54lKc1xdFA"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          }
+        },
+        "example":{ 
+          "_id": "3214ffgg323243e65nb45474",
+          "name": "Nadiia Doe",
+          "email": "example@mail.com"
+        }
+      },
+      "UpdateUserRequest": {},
+      "UpdateUserResponse": {},
+      "GetAllReviewsResponse": {},
+      "GetOwnReviewResponse": {},
+      "CreateOwnReviewRequest": {},
+      "CreateOwnReviewResponse": {},
+      "UpdateOwnReviewRequest": {},
+      "UpdateOwnReviewResponse": {},
+      "DeleteOwnReviewRequest": {},
+      "DeleteOwnReviewResponse": {},
+      "GetTasksResponse": {},
+      "CreatTaskRequest": {},
+      "CreatTaskResponse": {},
+      "UpdateTaskRequest": {},
+      "UpdateTaskResponse": {},
+      "DeleteTaskRequest": {},
+      "DeleteTaskResponse": {}
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
