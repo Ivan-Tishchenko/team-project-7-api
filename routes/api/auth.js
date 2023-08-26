@@ -22,6 +22,12 @@ router.get("/current", hendleJwtControler, getUser);
 router.patch(
   "/user",
   hendleJwtControler,
+  async (req, res, next) => {
+    // console.log(req);
+    console.log(req.body);
+    console.log(req.file?.filename);
+    next();
+  },
   upload.single("avatar"),
   updateUser
 );

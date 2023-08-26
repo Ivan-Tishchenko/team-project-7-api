@@ -11,7 +11,7 @@ const hendleJwtControler = async (req, res, next) => {
   const isTokenValid = verificationJWT(token);
   if (!isTokenValid) {
     res.status(401).json({
-      message: "Not authorized123",
+      message: "Not authorized",
     });
     return;
   }

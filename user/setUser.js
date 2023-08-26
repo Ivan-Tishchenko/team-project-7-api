@@ -39,14 +39,13 @@ const setUser = async (req, res, next) => {
       token,
     };
 
-    const user = await User.create(userData);
+    await User.create(userData);
 
     res.status(201).json({
       token,
       user: {
         name: req.body.name,
         email: req.body.email,
-        subscription: user.subscription,
         avatarURL,
       },
     });
