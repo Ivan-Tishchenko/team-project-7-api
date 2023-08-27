@@ -16,9 +16,9 @@ const hendleJwtControler = async (req, res, next) => {
     return;
   }
 
-  const { email } = decodeJwt(token);
+  const { id } = decodeJwt(token);
 
-  const user = await User.findOne({ email });
+  const user = await User.findOne({ _id: id });
 
   if (!!user && user.token === token) {
     req.user = user;
