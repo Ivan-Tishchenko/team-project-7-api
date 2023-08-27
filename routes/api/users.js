@@ -11,7 +11,7 @@ const router = express.Router();
 router.get("/current", hendleJwtControler, getUser);
 
 router.patch(
-  "/user",
+  "/edit",
   hendleJwtControler,
   upload.single("avatar"),
   updateUser

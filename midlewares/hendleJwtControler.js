@@ -18,6 +18,8 @@ const hendleJwtControler = async (req, res, next) => {
 
   const { id } = decodeJwt(token);
 
+
+
   const user = await User.findOne({ _id: id });
 
   if (!!user && user.token === token) {
@@ -30,6 +32,5 @@ const hendleJwtControler = async (req, res, next) => {
     message: "Not authorized",
   });
 };
-
 
 module.exports = hendleJwtControler;

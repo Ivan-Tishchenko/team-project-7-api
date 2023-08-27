@@ -48,13 +48,17 @@ const loginUser = async (req, res, next) => {
 
     await User.findOneAndUpdate({ _id: user.id }, user);
 
-    res.status(201).json({
+    res.status(200).json({
+      _id: user.id,
+      name: req.body.name,
+      email: req.body.email,
+      phone: user.phone,
+      birthday: user.birthday,
+      skype: user.skype,
+      avatarURL: user.avatarURL,
       token,
-      user: {
-        name: user.name,
-        email: user.email,
-        avatarURL: user.avatarURL,
-      },
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
     });
   } catch (error) {
     console.error("Error login user", error);
