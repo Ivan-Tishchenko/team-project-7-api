@@ -29,7 +29,7 @@ app.use(
 app.use("/api/tasks", TasksRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/users", userRouter);
-app.use("api/reviews", reviewsRouter);
+app.use("/api/reviews", reviewsRouter);
 
 app.use((req, res) => {
   res.status(404).json({ message: "Not found" });

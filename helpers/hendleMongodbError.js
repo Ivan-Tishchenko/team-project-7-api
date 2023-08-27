@@ -6,7 +6,9 @@ const hendleMongodbError = (error, data, next) => {
       : 400;
 
   if (status === 409) {
-    error.message = "email in use";
+    const key = Object.keys(error.keyValue)[0];
+
+    error.message = `${key} in use`;
   }
 
   error.status = status;
