@@ -2,8 +2,8 @@
   "openapi": "3.0.1",
   "info": {
     "version": "1.0.5",
-    "title": "Swagger test",
-    "description": "Showing off swagger-ui-express",
+    "title": "Goose Track V1 API docs",
+    "description": "API documentation for GoIT project 'Goose Track V1'",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -227,7 +227,7 @@
         "parameters": [],
         "security": [{ "Bearer": [] }],
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful operation",
             "content": {
               "application/json": {
@@ -241,8 +241,16 @@
             "description": "Bad request (invalid request body)",
             "content": {}
           },
-          "409": {
-            "description": "Provided email already exists",
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
             "content": {}
           }
         }
@@ -255,7 +263,7 @@
         "parameters": [],
         "security": [{ "Bearer": [] }],
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful operation",
             "content": {
               "application/json": {
@@ -269,8 +277,16 @@
             "description": "Bad request (invalid request body)",
             "content": {}
           },
-          "409": {
-            "description": "Provided email already exists",
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
             "content": {}
           }
         }
@@ -306,8 +322,16 @@
             "description": "Bad request (invalid request body)",
             "content": {}
           },
-          "409": {
-            "description": "Provided email already exists",
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
             "content": {}
           }
         }
@@ -329,7 +353,7 @@
           }
         },
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful operation",
             "content": {
               "application/json": {
@@ -343,8 +367,16 @@
             "description": "Bad request (invalid request body)",
             "content": {}
           },
-          "409": {
-            "description": "Provided email already exists",
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
             "content": {}
           }
         }
@@ -354,34 +386,25 @@
         "summary": "Delete own review",
         "parameters": [],
         "security": [{ "Bearer": [] }],
-        "requestBody": {
-          "description": "Review's object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteOwnReviewRequest"
-              }
-            }
-          }
-        },
         "responses": {
-          "201": {
+          "204": {
             "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteOwnReviewResponse"
-                }
-              }
-            }
+            "content": {}
           },
           "400": {
             "description": "Bad request (invalid request body)",
             "content": {}
           },
-          "409": {
-            "description": "Provided email already exists",
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
             "content": {}
           }
         }
@@ -394,7 +417,7 @@
         "parameters": [],
         "security": [{ "Bearer": [] }],
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful operation",
             "content": {
               "application/json": {
@@ -408,8 +431,16 @@
             "description": "Bad request (invalid request body)",
             "content": {}
           },
-          "409": {
-            "description": "Provided email already exists",
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
             "content": {}
           }
         }
@@ -445,8 +476,16 @@
             "description": "Bad request (invalid request body)",
             "content": {}
           },
-          "409": {
-            "description": "Provided email already exists",
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
             "content": {}
           }
         }
@@ -458,19 +497,8 @@
         "summary": "Update task",
         "parameters": [],
         "security": [{ "Bearer": [] }],
-        "requestBody": {
-          "description": "Task's object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/UpdateTaskRequest"
-              }
-            }
-          }
-        },
         "responses": {
-          "201": {
+          "200": {
             "description": "Successful operation",
             "content": {
               "application/json": {
@@ -484,8 +512,16 @@
             "description": "Bad request (invalid request body)",
             "content": {}
           },
-          "409": {
-            "description": "Provided email already exists",
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
             "content": {}
           }
         }
@@ -495,40 +531,30 @@
         "summary": "Delete task",
         "parameters": [],
         "security": [{ "Bearer": [] }],
-        "requestBody": {
-          "description": "Task's object",
-          "required": true,
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteTaskRequest"
-              }
-            }
-          }
-        },
         "responses": {
-          "201": {
+          "204": {
             "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/DeleteTaskResponse"
-                }
-              }
-            }
+            "content": {}
           },
           "400": {
             "description": "Bad request (invalid request body)",
             "content": {}
           },
-          "409": {
-            "description": "Provided email already exists",
+          "401": {
+            "description": "Unauthorized",
+            "content": {}
+          },
+          "404": {
+            "description": "Not found",
+            "content": {}
+          },
+          "500":{
+            "description": "Server error",
             "content": {}
           }
         }
       }
     }
-
   },
   "components": {
     "schemas": {
@@ -539,9 +565,9 @@
           "name": {
             "type": "string",
             "description": "User's name",
-            "example": "Nadiia Doe",
             "minLength": 2,
-            "maxLength": 100
+            "maxLength": 100,
+            "example": "Nadiia Doe"
           },
           "email": {
             "type": "string",
@@ -553,9 +579,9 @@
           "password": {
             "type": "string",
             "description": "User's password",
-            "example": "qwerty123",
             "minLength": 8,
-            "maxLength": 100
+            "maxLength": 100,
+            "example": "qwerty123"
           }
         }
       },
@@ -570,9 +596,9 @@
           "name": {
             "type": "string",
             "description": "User's name",
-            "example": "Nadiia Doe",
             "minLength": 2,
-            "maxLength": 100
+            "maxLength": 100,
+            "example": "Nadiia Doe"
           },
           "email": {
             "type": "string",
@@ -622,11 +648,6 @@
             "description": "Updating user's data",
             "example": "2023-08-26T09:30:30.547Z"
           }
-        },
-        "example":{ 
-          "_id": "3214ffgg323243e65nb45474",
-          "name": "Nadiia Doe",
-          "email": "example@mail.com"
         }
       },
       "LoginRequest": {
@@ -643,9 +664,9 @@
           "password": {
             "type": "string",
             "description": "User's password",
-            "example": "qwerty123",
             "minLength": 8,
-            "maxLength": 100
+            "maxLength": 100,
+            "example": "qwerty123"
           }
         }
       },
@@ -660,9 +681,9 @@
           "name": {
             "type": "string",
             "description": "User's name",
-            "example": "Nadiia Doe",
             "minLength": 2,
-            "maxLength": 100
+            "maxLength": 100,
+            "example": "Nadiia Doe"
           },
           "email": {
             "type": "string",
@@ -712,11 +733,6 @@
             "description": "Updating user's data",
             "example": "2023-08-26T09:30:30.547Z"
           }
-        },
-        "example":{ 
-          "_id": "3214ffgg323243e65nb45474",
-          "name": "Nadiia Doe",
-          "email": "example@mail.com"
         }
       },
       "GetCurrentUserResponse": {
@@ -730,9 +746,9 @@
           "name": {
             "type": "string",
             "description": "User's name",
-            "example": "Nadiia Doe",
             "minLength": 2,
-            "maxLength": 100
+            "maxLength": 100,
+            "example": "Nadiia Doe"
           },
           "email": {
             "type": "string",
@@ -782,11 +798,6 @@
             "description": "Updating user's data",
             "example": "2023-08-26T09:30:30.547Z"
           }
-        },
-        "example":{ 
-          "_id": "3214ffgg323243e65nb45474",
-          "name": "Nadiia Doe",
-          "email": "example@mail.com"
         }
       },
       "UpdateUserRequest": {
@@ -796,7 +807,8 @@
             "type": "string",
             "description": "User's new name",
             "minLength": 2,
-            "maxLength": 100
+            "maxLength": 100,
+            "example": "Nadiia"
            },
           "email": {
             "type": "string",
@@ -818,7 +830,7 @@
           "skype": {
             "type": "string",
             "description": "User's new Skype login",
-            "example": "skypeusername"
+            "example": "newskypeusername"
           },
           "avatar": {
             "type": "string",
@@ -839,7 +851,8 @@
             "type": "string",
             "description": "User's updated name",
             "minLength": 2,
-            "maxLength": 100
+            "maxLength": 100,
+            "example": "Nadiia"
           },
           "email": {
             "type": "string",
@@ -880,29 +893,252 @@
             "description": "Updating user's data",
             "example": "2023-08-27T10:30:30.547Z"
           }
-        },
-        "example": {
-          "_id": "64bbdccc1f9a9abd2d63f28e",
-          "name": "Updated Name",
-          "email": "updated@example.com",
-          "createdAt": "2023-08-26T09:30:30.547Z",
-          "updatedAt": "2023-08-27T10:30:30.547Z"
         }
       },
-      "GetAllReviewsResponse": {},
-      "GetOwnReviewResponse": {},
-      "CreateOwnReviewRequest": {},
-      "CreateOwnReviewResponse": {},
-      "UpdateOwnReviewRequest": {},
-      "UpdateOwnReviewResponse": {},
-      "DeleteOwnReviewRequest": {},
-      "DeleteOwnReviewResponse": {},
+      "GetAllReviewsResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "Review's id",
+              "example": "64bbdccc1f9a9abd2d63f28e"
+            },
+            "name": {
+              "type": "string",
+              "description": "User's name",
+              "minLength": 2,
+              "maxLength": 100,
+              "example": "Nadiia Doe"
+            },
+            "rating": {
+              "type": "number",
+              "default": 1,
+              "description": "Review's rating",
+              "minimum": 1,
+              "maximum": 5,
+              "example": 2
+            },
+            "text": {
+              "type": "string",
+              "description": "Review's text",
+              "minLength": 1,
+              "maxLength": 300,
+              "example": "GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended."
+            },
+            "avatar": {
+              "type": "string",
+              "description": "User's avatar",
+              "example": "31f3bfggn51fh32133jm312cfg13.jpg"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Creating user's data",
+              "example": "2023-08-26T09:30:30.547Z"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Updating user's data",
+              "example": "2023-08-26T09:30:30.547Z"
+            }
+          }
+        }
+      },
+      "GetOwnReviewResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Review's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "minLength": 2,
+            "maxLength": 100,
+            "example": "Nadiia Doe"
+            },
+          "rating": {
+            "type": "number",
+            "default": 1,
+            "description": "Review's rating",
+            "minimum": 1,
+            "maximum": 5,
+            "example": 2
+          },
+          "text": {
+            "type": "string",
+            "description": "Review's text",
+            "minLength": 1,
+            "maxLength": 300,
+            "example": "GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended."
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User's avatar",
+            "example": "31f3bfggn51fh32133jm312cfg13.jpg"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          }
+        }
+      },
+      "CreateOwnReviewRequest": {
+        "type": "object",
+        "required": ["text"],
+        "properties": {
+          "text": {
+            "type": "string",
+            "description": "Review's text",
+            "minLength": 1,
+            "maxLength": 300,
+            "example": "GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended."
+          },
+          "rating": {
+            "type": "number",
+            "default": 1,
+            "description": "Review's rating",
+            "minimum": 1,
+            "maximum": 5,
+            "example": 2
+          }
+        }     
+      },
+      "CreateOwnReviewResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Review's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "minLength": 2,
+            "maxLength": 100,
+            "example": "Nadiia Doe"
+            },
+          "rating": {
+            "type": "number",
+            "default": 1,
+            "description": "Review's rating",
+            "minimum": 1,
+            "maximum": 5,
+            "example": 2
+          },
+          "text": {
+            "type": "string",
+            "description": "Review's text",
+            "minLength": 1,
+            "maxLength": 300,
+            "example": "GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended."
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User's avatar",
+            "example": "31f3bfggn51fh32133jm312cfg13.jpg"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          }
+        }
+      },
+      "UpdateOwnReviewRequest": {
+        "type": "object",
+        "properties": {
+          "rating": {
+            "type": "number",
+            "default": 1,
+            "description": "Review's rating",
+            "minimum": 1,
+            "maximum": 5,
+            "example": 2
+          },
+          "text": {
+            "type": "string",
+            "description": "Review's text",
+            "minLength": 1,
+            "maxLength": 300,
+            "example": "Sorry, but I didn't like this app"
+          }
+        }
+      },
+      "UpdateOwnReviewResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Review's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "name": {
+            "type": "string",
+            "description": "User's name",
+            "minLength": 2,
+            "maxLength": 100,
+            "example": "Nadiia Doe"
+            },
+          "rating": {
+            "type": "number",
+            "default": 1,
+            "description": "Review's rating",
+            "minimum": 1,
+            "maximum": 5,
+            "example": 2
+          },
+          "text": {
+            "type": "string",
+            "description": "Review's text",
+            "minLength": 1,
+            "maxLength": 300,
+            "example": "Sorry, but I didn't like this app"
+          },
+          "avatar": {
+            "type": "string",
+            "description": "User's avatar",
+            "example": "31f3bfggn51fh32133jm312cfg13.jpg"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creating user's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updating user's data",
+            "example": "2023-08-27T09:30:30.547Z"
+          }
+        }
+      },
       "GetTasksResponse": {},
       "CreatTaskRequest": {},
       "CreatTaskResponse": {},
-      "UpdateTaskRequest": {},
       "UpdateTaskResponse": {},
-      "DeleteTaskRequest": {},
       "DeleteTaskResponse": {}
     },
     "securitySchemes": {
