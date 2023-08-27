@@ -26,29 +26,41 @@ const setUser = async (req, res, next) => {
 
     const avatarURL = gravatar.url(req.body.email);
 
-    const token = createJWT({
-      id: req.body.id,
-      email: req.body.email,
-    });
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString();
 
     const userData = {
       name: req.body.name,
       email: req.body.email,
       password,
       avatarURL,
-      token,
+      token: null,
+      createdAt: formattedDate,
     };
 
-    const user = await User.create(userData);
+    const { _id } = await User.create(userData);
+
+    const token = createJWT({
+      id: _id,
+      email: req.body.email,
+    });
+
+    const user = await User.findOneAndUpdate(
+      { _id },
+      { token }
+    );
 
     res.status(201).json({
+      _id: user.id,
+      name: req.body.name,
+      email: req.body.email,
+      phone: user.phone,
+      birthday: user.birthday,
+      skype: user.skype,
+      avatarURL,
       token,
-      user: {
-        name: req.body.name,
-        email: req.body.email,
-        subscription: user.subscription,
-        avatarURL,
-      },
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
     });
   } catch (error) {
     console.error("Error creating user", error);

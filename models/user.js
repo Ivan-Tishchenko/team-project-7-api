@@ -25,11 +25,6 @@ const userSchema = new Schema(
       required: true,
       unique: true,
     },
-    subscription: {
-      type: String,
-      enum: ["starter", "pro", "business"],
-      default: "starter",
-    },
     token: {
       type: String,
       default: null,
@@ -42,6 +37,14 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "user",
     },
+    phone: {
+      type: String,
+      default: null,
+    },
+    birhtday: { type: String, default: null },
+    skype: { type: String, default: null },
+    createdAt: { type: String, default: Date.now() },
+    updatedAt: { type: String, default: null },
   },
   {
     versionKey: false,
