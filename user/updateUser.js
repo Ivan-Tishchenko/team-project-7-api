@@ -1,7 +1,6 @@
 const { User } = require("../models/user");
 
 const updateUser = async (req, res, next) => {
-  console.log("starting");
   const { email, name } = req.body;
   const avatarURL = req.file?.path;
 
