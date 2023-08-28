@@ -495,8 +495,25 @@
       "patch": {
         "tags": ["Tasks"],
         "summary": "Update task",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "taskId",
+            "required": true
+          }
+        ],
         "security": [{ "Bearer": [] }],
+        "requestBody": {
+          "description": "Task's object",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateTaskRequest"
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -529,12 +546,24 @@
       "delete": {
         "tags": ["Tasks"],
         "summary": "Delete task",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "taskId",
+            "required": true
+          }
+        ],
         "security": [{ "Bearer": [] }],
         "responses": {
           "204": {
             "description": "Successful operation",
-            "content": {}
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DeleteTaskResponse"
+                }
+              }
+            }
           },
           "400": {
             "description": "Bad request (invalid request body)",
@@ -935,13 +964,13 @@
             "createdAt": {
               "type": "string",
               "format": "date-time",
-              "description": "Creating user's data",
+              "description": "Creating review's data",
               "example": "2023-08-26T09:30:30.547Z"
             },
             "updatedAt": {
               "type": "string",
               "format": "date-time",
-              "description": "Updating user's data",
+              "description": "Updating review's data",
               "example": "2023-08-26T09:30:30.547Z"
             }
           }
@@ -985,13 +1014,13 @@
           "createdAt": {
             "type": "string",
             "format": "date-time",
-            "description": "Creating user's data",
+            "description": "Creating review's data",
             "example": "2023-08-26T09:30:30.547Z"
           },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
-            "description": "Updating user's data",
+            "description": "Updating review's data",
             "example": "2023-08-26T09:30:30.547Z"
           }
         }
@@ -1055,13 +1084,13 @@
           "createdAt": {
             "type": "string",
             "format": "date-time",
-            "description": "Creating user's data",
+            "description": "Creating review's data",
             "example": "2023-08-26T09:30:30.547Z"
           },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
-            "description": "Updating user's data",
+            "description": "Updating review's data",
             "example": "2023-08-26T09:30:30.547Z"
           }
         }
@@ -1124,22 +1153,361 @@
           "createdAt": {
             "type": "string",
             "format": "date-time",
-            "description": "Creating user's data",
+            "description": "Creating review's data",
             "example": "2023-08-26T09:30:30.547Z"
           },
           "updatedAt": {
             "type": "string",
             "format": "date-time",
-            "description": "Updating user's data",
+            "description": "Updating review's data",
             "example": "2023-08-27T09:30:30.547Z"
           }
         }
       },
-      "GetTasksResponse": {},
-      "CreatTaskRequest": {},
-      "CreatTaskResponse": {},
-      "UpdateTaskResponse": {},
-      "DeleteTaskResponse": {}
+      "GetTasksResponse": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string",
+              "description": "Task's id",
+              "example": "64bbdccc1f9a9abd2d63f28e"
+            },
+            "title": {
+              "type": "string",
+              "description": "Task's title",
+              "minLength": 2,
+              "maxLength": 250,
+              "example": "Review and update my portfolio"
+            },
+            "start": {
+              "type": "string",
+              "description": "Task's start",
+              "format": "time",
+              "example": "9:00"
+            },
+            "end": {
+              "type": "string",
+              "description": "Task's end",
+              "format": "time",
+              "example": "12:00"
+            },
+            "priority": {
+              "type": "string",
+              "default": "low",
+              "description": "Task's priority",
+              "enum": ["low", "medium", "high"]
+            },
+            "date": {
+              "type": "string",
+              "description": "Task's date",
+              "format": "date",
+              "example": "2023-08-28"
+            },
+            "category": {
+              "type": "string",
+              "default": "to-do",
+              "description": "Task's category",
+              "enum": ["to-do", "in-progress", "done"]
+            },
+            "owner": {
+              "type": "string",
+              "description": "Task's owner ID",
+              "example": "64bbdccc1f9a9abd2d63f28e"
+            },
+            "createdAt": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Creating task's data",
+              "example": "2023-08-26T09:30:30.547Z"
+            },
+            "updatedAt": {
+              "type": "string",
+              "format": "date-time",
+              "description": "Updating task's data",
+              "example": "2023-08-26T09:30:30.547Z"
+            }
+          }
+        }
+      },
+      "CreatTaskRequest": {
+        "type": "object",
+        "required": ["title", "start", "end", "priority", "date", "category"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Task's title",
+            "minLength": 2,
+            "maxLength": 250,
+            "example": "Review and update my portfolio"
+          },
+          "start": {
+            "type": "string",
+            "description": "Task's start",
+            "format": "time",
+            "example": "9:00"
+          },
+          "end": {
+            "type": "string",
+            "description": "Task's end",
+            "format": "time",
+            "example": "12:00"
+          },
+          "priority": {
+            "type": "string",
+            "default": "low",
+            "description": "Task's priority",
+            "enum": ["low", "medium", "high"]
+          },
+          "date": {
+            "type": "string",
+            "description": "Task's date",
+            "format": "date",
+            "example": "2023-08-28"
+          },
+          "category": {
+            "type": "string",
+            "default": "to-do",
+            "description": "Task's category",
+            "enum": ["to-do", "in-progress", "done"]
+          }
+        }
+      },
+      "CreatTaskResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Task's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "title": {
+            "type": "string",
+            "description": "Task's title",
+            "minLength": 2,
+            "maxLength": 250,
+            "example": "Review and update my portfolio"
+          },
+          "start": {
+            "type": "string",
+            "description": "Task's start",
+            "format": "time",
+            "example": "9:00"
+          },
+          "end": {
+            "type": "string",
+            "description": "Task's end",
+            "format": "time",
+            "example": "12:00"
+          },
+          "priority": {
+            "type": "string",
+            "default": "low",
+            "description": "Task's priority",
+            "enum": ["low", "medium", "high"]
+          },
+          "date": {
+            "type": "string",
+            "description": "Task's date",
+            "format": "date",
+            "example": "2023-08-28"
+          },
+          "category": {
+            "type": "string",
+            "default": "to-do",
+            "description": "Task's category",
+            "enum": ["to-do", "in-progress", "done"]
+          },
+          "owner": {
+            "type": "string",
+            "description": "Task's owner ID",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creating task's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updating task's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          }
+        }
+      },
+      "UpdateTaskRequest":{
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "description": "Task's title",
+            "minLength": 2,
+            "maxLength": 250,
+            "example": "Update my portfolio"
+          },
+          "start": {
+            "type": "string",
+            "description": "Task's start",
+            "format": "time",
+            "example": "12:00"
+          },
+          "end": {
+            "type": "string",
+            "description": "Task's end",
+            "format": "time",
+            "example": "15:00"
+          },
+          "priority": {
+            "type": "string",
+            "default": "low",
+            "description": "Task's priority",
+            "enum": ["low", "medium", "high"]
+          },
+          "date": {
+            "type": "string",
+            "description": "Task's date",
+            "format": "date",
+            "example": "2023-08-29"
+          },
+          "category": {
+            "type": "string",
+            "default": "to-do",
+            "description": "Task's category",
+            "enum": ["to-do", "in-progress", "done"]
+          }
+        }
+      },
+      "UpdateTaskResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Task's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "title": {
+            "type": "string",
+            "description": "Task's title",
+            "minLength": 2,
+            "maxLength": 250,
+            "example": "Update my portfolio"
+          },
+          "start": {
+            "type": "string",
+            "description": "Task's start",
+            "format": "time",
+            "example": "12:00"
+          },
+          "end": {
+            "type": "string",
+            "description": "Task's end",
+            "format": "time",
+            "example": "15:00"
+          },
+          "priority": {
+            "type": "string",
+            "default": "low",
+            "description": "Task's priority",
+            "enum": ["low", "medium", "high"]
+          },
+          "date": {
+            "type": "string",
+            "description": "Task's date",
+            "format": "date",
+            "example": "2023-08-29"
+          },
+          "category": {
+            "type": "string",
+            "default": "to-do",
+            "description": "Task's category",
+            "enum": ["to-do", "in-progress", "done"]
+          },
+          "owner": {
+            "type": "string",
+            "description": "Task's owner ID",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creating task's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updating task's data",
+            "example": "2023-08-27T09:30:30.547Z"
+          }
+        }
+      },
+      "DeleteTaskResponse": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string",
+            "description": "Task's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "title": {
+            "type": "string",
+            "description": "Task's title",
+            "minLength": 2,
+            "maxLength": 250,
+            "example": "Update my portfolio"
+          },
+          "start": {
+            "type": "string",
+            "description": "Task's start",
+            "format": "time",
+            "example": "12:00"
+          },
+          "end": {
+            "type": "string",
+            "description": "Task's end",
+            "format": "time",
+            "example": "15:00"
+          },
+          "priority": {
+            "type": "string",
+            "default": "low",
+            "description": "Task's priority",
+            "enum": ["low", "medium", "high"]
+          },
+          "date": {
+            "type": "string",
+            "description": "Task's date",
+            "format": "date",
+            "example": "2023-08-29"
+          },
+          "category": {
+            "type": "string",
+            "default": "to-do",
+            "description": "Task's category",
+            "enum": ["to-do", "in-progress", "done"]
+          },
+          "owner": {
+            "type": "string",
+            "description": "Task's owner ID",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Creating task's data",
+            "example": "2023-08-26T09:30:30.547Z"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Updating task's data",
+            "example": "2023-08-27T09:30:30.547Z"
+          }
+        }
+      }
     },
     "securitySchemes": {
       "Bearer": {
