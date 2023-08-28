@@ -1,4 +1,4 @@
-const { User, joiUserSchema } = require("../models/user");
+const { User, loginJoiSchema } = require("../models/user");
 
 const {
   compareHashPassword,
@@ -8,11 +8,11 @@ const { createJWT } = require("./jwt");
 
 const loginUser = async (req, res, next) => {
   try {
-    const { error } = joiUserSchema.validate(req.body);
+    const { error } = loginJoiSchema.validate(req.body);
     if (error) {
-      res
-        .status(400)
-        .json({ message: error.details[0].message });
+      res.status(400).json({
+        message: error.details[0].message,
+      });
       return;
     }
 
