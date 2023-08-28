@@ -6,12 +6,17 @@ const {
 const { User } = require("../models/user");
 
 const hendleJwtControler = async (req, res, next) => {
-  const [, token] = req.headers.authorization?.split(" ");
-  if (!token) {
+  if (
+    !req.headers.authorization ||
+    req.headers.authorization.split(" ").length < 2
+  ) {
     res
-      .status(502)
+      .status(400)
       .json({ message: "token not transferred" });
+    return;
   }
+
+  const [, token] = req.headers.authorization.split(" ");
 
   const isTokenValid = verificationJWT(token);
   if (!isTokenValid) {
@@ -22,8 +27,6 @@ const hendleJwtControler = async (req, res, next) => {
   }
 
   const { id } = decodeJwt(token);
-
-
 
   const user = await User.findOne({ _id: id });
 
