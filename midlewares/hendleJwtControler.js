@@ -6,7 +6,12 @@ const {
 const { User } = require("../models/user");
 
 const hendleJwtControler = async (req, res, next) => {
-  const [, token] = req.headers.authorization.split(" ");
+  const [, token] = req.headers.authorization?.split(" ");
+  if (!token) {
+    res
+      .status(502)
+      .json({ message: "token not transferred" });
+  }
 
   const isTokenValid = verificationJWT(token);
   if (!isTokenValid) {
