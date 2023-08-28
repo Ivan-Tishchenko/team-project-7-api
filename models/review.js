@@ -4,11 +4,26 @@ const reviewSchema = new Schema(
   {
     name: {
       type: String,
-      required: true,
+      required: [true, "name is required"],
     },
-    comment: {
+    text: {
       type: String,
-      required: true,
+      maxlength: 250,
+      required: [true, "text is required"],
+    },
+    rating: {
+      type: String,
+    },
+    avatarURL: {
+      type: String,
+      required: [true, "avatar is required"],
+    },
+    createdAt: {
+      type: String,
+      required: [true, "created at is required"],
+    },
+    updatedAt: {
+      type: String,
     },
   },
   {
