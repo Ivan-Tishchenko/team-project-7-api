@@ -11,7 +11,9 @@
   },
   "consumes": ["application/json"],
   "produces": ["application/json"],
-  "servers": [{ "url": "group-project-7.onrender.com" }],
+  "servers": [
+    { "url": "https://group-project-7.onrender.com" }
+  ],
   "tags": [
     {
       "name": "Auth",
@@ -66,7 +68,7 @@
             "description": "Email in use",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -108,7 +110,7 @@
             "description": "Email or password is wrong",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -126,11 +128,11 @@
             "description": "Successful operation",
             "content": {}
           },
-           "401": {
+          "401": {
             "description": "Unauthorized",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -166,7 +168,7 @@
             "description": "Invalid user",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -213,7 +215,7 @@
             "description": "Email in use",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -249,7 +251,7 @@
             "description": "Not found",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -285,7 +287,7 @@
             "description": "Not found",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -330,7 +332,7 @@
             "description": "Not found",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -375,7 +377,7 @@
             "description": "Not found",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -403,7 +405,7 @@
             "description": "Not found",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -439,7 +441,7 @@
             "description": "Not found",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -484,7 +486,7 @@
             "description": "Not found",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -537,7 +539,7 @@
             "description": "Not found",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -577,7 +579,7 @@
             "description": "Not found",
             "content": {}
           },
-          "500":{
+          "500": {
             "description": "Server error",
             "content": {}
           }
@@ -831,14 +833,14 @@
       },
       "UpdateUserRequest": {
         "type": "object",
-        "properties":{
+        "properties": {
           "name": {
             "type": "string",
             "description": "User's new name",
             "minLength": 2,
             "maxLength": 100,
             "example": "Nadiia"
-           },
+          },
           "email": {
             "type": "string",
             "description": "User's new email",
@@ -849,7 +851,7 @@
           "phone": {
             "type": "string",
             "description": "User's new phone number",
-            "example": "+380972563477"           
+            "example": "+380972563477"
           },
           "birthday": {
             "type": "string",
@@ -990,7 +992,7 @@
             "minLength": 2,
             "maxLength": 100,
             "example": "Nadiia Doe"
-            },
+          },
           "rating": {
             "type": "number",
             "default": 1,
@@ -1044,7 +1046,7 @@
             "maximum": 5,
             "example": 2
           }
-        }     
+        }
       },
       "CreateOwnReviewResponse": {
         "type": "object",
@@ -1060,7 +1062,7 @@
             "minLength": 2,
             "maxLength": 100,
             "example": "Nadiia Doe"
-            },
+          },
           "rating": {
             "type": "number",
             "default": 1,
@@ -1129,7 +1131,7 @@
             "minLength": 2,
             "maxLength": 100,
             "example": "Nadiia Doe"
-            },
+          },
           "rating": {
             "type": "number",
             "default": 1,
@@ -1233,7 +1235,14 @@
       },
       "CreatTaskRequest": {
         "type": "object",
-        "required": ["title", "start", "end", "priority", "date", "category"],
+        "required": [
+          "title",
+          "start",
+          "end",
+          "priority",
+          "date",
+          "category"
+        ],
         "properties": {
           "title": {
             "type": "string",
@@ -1338,7 +1347,7 @@
           }
         }
       },
-      "UpdateTaskRequest":{
+      "UpdateTaskRequest": {
         "type": "object",
         "properties": {
           "title": {
