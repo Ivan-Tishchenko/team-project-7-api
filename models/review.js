@@ -1,11 +1,12 @@
 const { Schema, model } = require("mongoose");
+const hendleMongodbError = require("../helpers/hendleMongodbError");
 
 const reviewSchema = new Schema(
   {
     name: {
       type: String,
       required: [true, "name is required"],
-      uniqur: true,
+      unique: true,
     },
     text: {
       type: String,
@@ -34,6 +35,8 @@ const reviewSchema = new Schema(
     versionKey: false,
   }
 );
+
+reviewSchema.post("save", hendleMongodbError);
 
 const Review = model("review", reviewSchema);
 
