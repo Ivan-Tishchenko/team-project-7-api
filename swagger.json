@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.5",
     "title": "Goose Track V1 API docs",
-    "description": "API documentation for GoIT project 'Goose Track V1'",
+    "description": "API documentation for GoIT project 'Goose Track V1'. [Backend github repository](https://https://github.com/Ivan-Tishchenko/team-project-7-api) | [Privacy Policy](https://https://group-project-7.onrender.com/)",
     "license": {
       "name": "MIT",
       "url": "https://opensource.org/licenses/MIT"
@@ -11,7 +11,7 @@
   },
   "consumes": ["application/json"],
   "produces": ["application/json"],
-  "servers": [{ "url": "group-project-7.onrender.com" }, { "url": "http://localhost:3000" }],
+  "servers": [{ "url": "group-project-7.onrender.com" }],
   "tags": [
     {
       "name": "Auth",
@@ -31,7 +31,7 @@
     }
   ],
   "paths": {
-    "/auth/register": {
+    "/api/auth/register": {
       "post": {
         "tags": ["Auth"],
         "summary": "User registration",
@@ -73,7 +73,7 @@
         }
       }
     },
-    "/auth/login": {
+    "/api/auth/login": {
       "post": {
         "tags": ["Auth"],
         "summary": "User authentication",
@@ -115,7 +115,7 @@
         }
       }
     },
-    "/auth/logout": {
+    "/api/auth/logout": {
       "post": {
         "tags": ["Auth"],
         "summary": "User logout",
@@ -137,7 +137,7 @@
         }
       }
     },
-    "/users/current": {
+    "/api/users/current": {
       "get": {
         "tags": ["Users"],
         "summary": "Get current user",
@@ -173,7 +173,7 @@
         }
       }
     },
-    "/users/edit": {
+    "/api/users/edit": {
       "patch": {
         "tags": ["Users"],
         "summary": "Update user's data",
@@ -220,7 +220,7 @@
         }
       }
     },
-    "/reviews": {
+    "/api/reviews": {
       "get": {
         "tags": ["Reviews"],
         "summary": "Get all reviews",
@@ -256,7 +256,7 @@
         }
       }
     },
-    "/reviews/own": {
+    "/api/reviews/own": {
       "get": {
         "tags": ["Reviews"],
         "summary": "Get own review",
@@ -410,7 +410,7 @@
         }
       }
     },
-    "/tasks": {
+    "/api/tasks": {
       "get": {
         "tags": ["Tasks"],
         "summary": "Get tasks for the month",
@@ -491,7 +491,7 @@
         }
       }
     },
-    "/tasks/{taskId}": {
+    "/api/tasks/{taskId}": {
       "patch": {
         "tags": ["Tasks"],
         "summary": "Update task",
@@ -654,9 +654,9 @@
             "description": "User's Skype login",
             "example": "skypeusername"
           },
-          "avatar": {
+          "avatarURL": {
             "type": "string",
-            "description": "User's avatar",
+            "description": "User's avatarURL",
             "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           },
           "token": {
@@ -739,9 +739,9 @@
             "description": "User's Skype login",
             "example": "skypeusername"
           },
-          "avatar": {
+          "avatarURL": {
             "type": "string",
-            "description": "User's avatar",
+            "description": "User's avatarURL",
             "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           },
           "token": {
@@ -804,9 +804,9 @@
             "description": "User's Skype login",
             "example": "skypeusername"
           },
-          "avatar": {
+          "avatarURL": {
             "type": "string",
-            "description": "User's avatar",
+            "description": "User's avatarURL",
             "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           },
           "token": {
@@ -861,9 +861,9 @@
             "description": "User's new Skype login",
             "example": "newskypeusername"
           },
-          "avatar": {
+          "avatarURL": {
             "type": "string",
-            "description": "User's new avatar URL",
+            "description": "User's new avatarURL",
             "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           }
         }
@@ -905,9 +905,9 @@
             "description": "User's updated Skype login",
             "example": "skypeusername"
           },
-          "avatar": {
+          "avatarURL": {
             "type": "string",
-            "description": "User's updated avatar URL",
+            "description": "User's updated avatarURL",
             "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           },
           "createdAt": {
@@ -956,9 +956,9 @@
               "maxLength": 300,
               "example": "GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended."
             },
-            "avatar": {
+            "avatarURL": {
               "type": "string",
-              "description": "User's avatar",
+              "description": "User's avatarURL",
               "example": "31f3bfggn51fh32133jm312cfg13.jpg"
             },
             "createdAt": {
@@ -1006,9 +1006,9 @@
             "maxLength": 300,
             "example": "GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended."
           },
-          "avatar": {
+          "avatarURL": {
             "type": "string",
-            "description": "User's avatar",
+            "description": "User's avatarURL",
             "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           },
           "createdAt": {
@@ -1076,9 +1076,9 @@
             "maxLength": 300,
             "example": "GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended."
           },
-          "avatar": {
+          "avatarURL": {
             "type": "string",
-            "description": "User's avatar",
+            "description": "User's avatarURL",
             "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           },
           "createdAt": {
@@ -1145,9 +1145,9 @@
             "maxLength": 300,
             "example": "Sorry, but I didn't like this app"
           },
-          "avatar": {
+          "avatarURL": {
             "type": "string",
-            "description": "User's avatar",
+            "description": "User's avatarURL",
             "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           },
           "createdAt": {
