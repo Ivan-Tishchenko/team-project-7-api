@@ -6,8 +6,6 @@ const updateUser = async (req, res, next) => {
     const { email, name, phone, birthday, skype } =
       req.body;
 
-    const updatedAt = Date.now();
-
     const avatarURL = req.file?.path;
 
     const updateData = {
@@ -52,10 +50,11 @@ const updateUser = async (req, res, next) => {
       updateData.skype = skype;
       isUpdateNeed = true;
     }
-    if (!!updatedAt && updatedAt !== req.user.updatedAt) {
-      updateData.updatedAt = updatedAt;
-      isUpdateNeed = true;
-    }
+
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString();
+
+    updateData.updatedAt = formattedDate;
 
     if (!isUpdateNeed) {
       res.status(400).json({ message: "bad request" });
