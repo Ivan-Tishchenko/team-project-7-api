@@ -5,6 +5,7 @@ const reviewSchema = new Schema(
     name: {
       type: String,
       required: [true, "name is required"],
+      uniqur: true,
     },
     text: {
       type: String,
@@ -13,6 +14,7 @@ const reviewSchema = new Schema(
     },
     rating: {
       type: String,
+      default: null,
     },
     avatarURL: {
       type: String,
@@ -24,6 +26,7 @@ const reviewSchema = new Schema(
     },
     updatedAt: {
       type: String,
+      default: null,
     },
   },
   {
