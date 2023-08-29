@@ -936,6 +936,11 @@
               "description": "Review's id",
               "example": "64bbdccc1f9a9abd2d63f28e"
             },
+            "userID": {
+              "type": "string",
+              "description": "user id",
+              "example": "64bbdccc1f9a9abd2d63f28e"
+            },
             "name": {
               "type": "string",
               "description": "User's name",
@@ -984,6 +989,11 @@
           "_id": {
             "type": "string",
             "description": "Review's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "userID": {
+            "type": "string",
+            "description": "user id",
             "example": "64bbdccc1f9a9abd2d63f28e"
           },
           "name": {
@@ -1056,6 +1066,11 @@
             "description": "Review's id",
             "example": "64bbdccc1f9a9abd2d63f28e"
           },
+          "userID": {
+            "type": "string",
+            "description": "user id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
           "name": {
             "type": "string",
             "description": "User's name",
@@ -1123,6 +1138,11 @@
           "_id": {
             "type": "string",
             "description": "Review's id",
+            "example": "64bbdccc1f9a9abd2d63f28e"
+          },
+          "userID": {
+            "type": "string",
+            "description": "user id",
             "example": "64bbdccc1f9a9abd2d63f28e"
           },
           "name": {
