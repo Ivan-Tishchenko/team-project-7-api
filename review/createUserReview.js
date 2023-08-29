@@ -1,8 +1,8 @@
 const { Review } = require("../models/review");
 
 const createUserReview = async (req, res, next) => {
-  const currentDate = new Date();
-  const formattedDate = currentDate.toISOString();
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString();
 
   if (!req.body.text) {
     res.status(400).json({
@@ -14,6 +14,7 @@ const createUserReview = async (req, res, next) => {
   const review = {
     name: req.user.name,
     text: req.body.text,
+    rating: req.body.rating,
     avatarURL: req.user.avatarURL,
     createdAt: formattedDate,
   };

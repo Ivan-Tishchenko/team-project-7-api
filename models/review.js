@@ -14,7 +14,7 @@ const reviewSchema = new Schema(
     },
     rating: {
       type: String,
-      default: null,
+      required: [true, "rating is required"],
     },
     avatarURL: {
       type: String,
