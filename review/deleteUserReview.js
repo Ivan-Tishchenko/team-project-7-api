@@ -2,7 +2,7 @@ const { Review } = require("../models/review");
 
 const deleteUserReview = async (req, res, next) => {
   const review = await Review.findOneAndDelete({
-    name: req.user.name,
+    userId: req.user._id,
   });
 
   if (!review) {

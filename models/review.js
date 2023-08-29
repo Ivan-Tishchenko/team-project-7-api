@@ -6,6 +6,10 @@ const reviewSchema = new Schema(
     name: {
       type: String,
       required: [true, "name is required"],
+    },
+    userID: {
+      type: String,
+      require: [true, "userID is required"],
       unique: true,
     },
     text: {

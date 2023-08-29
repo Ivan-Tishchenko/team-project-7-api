@@ -25,6 +25,7 @@ const createUserReview = async (req, res, next) => {
 
     const review = {
       name: req.user.name,
+      userID: req.user._id,
       text: req.body.text,
       rating: req.body.rating,
       avatarURL: req.user.avatarURL,

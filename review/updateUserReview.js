@@ -32,6 +32,7 @@ const updateUserReview = async (req, res, next) => {
 
     res.status(201).json({
       _id: review._id,
+      userId: review.userID,
       name: review.name,
       text: review.text,
       rating: review.rating,

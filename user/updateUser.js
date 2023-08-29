@@ -68,7 +68,7 @@ const updateUser = async (req, res, next) => {
 
     if (isReviewNeedUpdate) {
       await Review.findOneAndUpdate(
-        { name: req.user.name },
+        { userID: req.user._id },
         reviewUpdates
       );
     }
