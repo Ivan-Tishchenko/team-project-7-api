@@ -41,7 +41,7 @@ const userSchema = new Schema(
       type: String,
       default: null,
     },
-    birhtday: { type: String, default: null },
+    birthday: { type: String, default: null },
     skype: { type: String, default: null },
     createdAt: { type: String, default: Date.now() },
     updatedAt: { type: String, default: null },
