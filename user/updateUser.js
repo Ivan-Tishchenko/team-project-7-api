@@ -51,6 +51,7 @@ const updateUser = async (req, res, next) => {
 
     if (!isUpdateNeed) {
       res.status(201).json({ ...updateData });
+      return;
     }
 
     await User.findOneAndUpdate(
