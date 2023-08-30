@@ -991,17 +991,14 @@
             "description": "Review's id",
             "example": "64bbdccc1f9a9abd2d63f28e"
           },
-          "userID": {
-            "type": "string",
-            "description": "user id",
-            "example": "64bbdccc1f9a9abd2d63f28e"
-          },
-          "name": {
-            "type": "string",
-            "description": "User's name",
-            "minLength": 2,
-            "maxLength": 100,
-            "example": "Nadiia Doe"
+          "owner": {
+            "type": "object",
+            "description": "owner",
+            "example": {
+              "_id": "64bbdccc1f9a9abd2d63f28e",
+              "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg",
+              "name": "Nadiia Doe"
+            }
           },
           "rating": {
             "type": "number",
@@ -1017,11 +1014,6 @@
             "minLength": 1,
             "maxLength": 300,
             "example": "GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended."
-          },
-          "avatarURL": {
-            "type": "string",
-            "description": "User's avatarURL",
-            "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           },
           "createdAt": {
             "type": "string",
@@ -1066,17 +1058,14 @@
             "description": "Review's id",
             "example": "64bbdccc1f9a9abd2d63f28e"
           },
-          "userID": {
-            "type": "string",
-            "description": "user id",
-            "example": "64bbdccc1f9a9abd2d63f28e"
-          },
-          "name": {
-            "type": "string",
-            "description": "User's name",
-            "minLength": 2,
-            "maxLength": 100,
-            "example": "Nadiia Doe"
+          "owner": {
+            "type": "object",
+            "description": "owner",
+            "example": {
+              "_id": "64bbdccc1f9a9abd2d63f28e",
+              "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg",
+              "name": "Nadiia Doe"
+            }
           },
           "rating": {
             "type": "number",
@@ -1092,11 +1081,6 @@
             "minLength": 1,
             "maxLength": 300,
             "example": "GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended."
-          },
-          "avatarURL": {
-            "type": "string",
-            "description": "User's avatarURL",
-            "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           },
           "createdAt": {
             "type": "string",
@@ -1140,17 +1124,14 @@
             "description": "Review's id",
             "example": "64bbdccc1f9a9abd2d63f28e"
           },
-          "userID": {
-            "type": "string",
-            "description": "user id",
-            "example": "64bbdccc1f9a9abd2d63f28e"
-          },
-          "name": {
-            "type": "string",
-            "description": "User's name",
-            "minLength": 2,
-            "maxLength": 100,
-            "example": "Nadiia Doe"
+          "owner": {
+            "type": "object",
+            "description": "owner",
+            "example": {
+              "_id": "64bbdccc1f9a9abd2d63f28e",
+              "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg",
+              "name": "Nadiia Doe"
+            }
           },
           "rating": {
             "type": "number",
@@ -1167,11 +1148,7 @@
             "maxLength": 300,
             "example": "Sorry, but I didn't like this app"
           },
-          "avatarURL": {
-            "type": "string",
-            "description": "User's avatarURL",
-            "example": "31f3bfggn51fh32133jm312cfg13.jpg"
-          },
+
           "createdAt": {
             "type": "string",
             "format": "date-time",

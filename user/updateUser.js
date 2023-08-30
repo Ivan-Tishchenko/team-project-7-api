@@ -1,4 +1,3 @@
-const { Review } = require("../models/review");
 const { User } = require("../models/user");
 
 const updateUser = async (req, res, next) => {
@@ -17,10 +16,8 @@ const updateUser = async (req, res, next) => {
       updatedAt: req.user.updatedAt,
       skype: req.user.skype,
     };
-    const reviewUpdates = {};
 
     let isUpdateNeed = false;
-    let isReviewNeedUpdate = false;
 
     if (!!email && email !== req.user.email) {
       updateData.email = email;
@@ -29,14 +26,10 @@ const updateUser = async (req, res, next) => {
     if (!!name && name !== req.user.name) {
       updateData.name = name;
       isUpdateNeed = true;
-      reviewUpdates.name = name;
-      isReviewNeedUpdate = true;
     }
     if (avatarURL) {
       updateData.avatarURL = avatarURL;
       isUpdateNeed = true;
-      reviewUpdates.avatarURL = avatarURL;
-      isReviewNeedUpdate = true;
     }
     if (!!phone && phone !== req.user.phone) {
       updateData.phone = phone;
@@ -64,13 +57,6 @@ const updateUser = async (req, res, next) => {
       { _id: req.user._id },
       updateData
     );
-
-    if (isReviewNeedUpdate) {
-      await Review.findOneAndUpdate(
-        { userID: req.user._id },
-        reviewUpdates
-      );
-    }
 
     res.status(201).json({
       ...updateData,

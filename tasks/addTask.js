@@ -1,7 +1,4 @@
-const {
-  Task,
-  addTaskSchema,
-} = require("../models/tasks");
+const { Task, addTaskSchema } = require("../models/tasks");
 
 const addTask = async (req, res, next) => {
   try {
@@ -13,7 +10,23 @@ const addTask = async (req, res, next) => {
       return;
     }
 
-    const task = await Task.create(req.body);
+    const [hoursStart, minutesStart] = req.body.start;
+    const [hoursEnd, minutesEnd] = req.body.end;
+
+    if (
+      hoursEnd < hoursStart ||
+      (hoursStart === hoursEnd &&
+        minutesStart >= minutesEnd)
+    ) {
+      res.status(400).json({
+        message: "time start must be early than time end",
+      });
+      return;
+    }
+
+    console.log(req.body);
+
+    const task = await Task.create(req.body).populate("owner", "");
     res.status(201).json(task);
   } catch (error) {
     console.error("Error adding Task:", error);

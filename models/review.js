@@ -3,36 +3,26 @@ const hendleMongodbError = require("../helpers/hendleMongodbError");
 
 const reviewSchema = new Schema(
   {
-    name: {
-      type: String,
-      required: [true, "name is required"],
-    },
-    userID: {
-      type: String,
-      require: [true, "userID is required"],
-      unique: true,
-    },
     text: {
       type: String,
-      maxlength: 250,
       required: [true, "text is required"],
     },
     rating: {
-      type: String,
-      enum: ["1", "2", "3", "4", "5"],
+      type: Number,
+      enum: [1, 2, 3, 4, 5],
       required: [true, "rating is required"],
     },
-    avatarURL: {
-      type: String,
-      required: [true, "avatar is required"],
-    },
     createdAt: {
-      type: String,
+      type: Date,
       required: [true, "created at is required"],
     },
     updatedAt: {
-      type: String,
+      type: Date,
       default: null,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "users",
     },
   },
   {
