@@ -26,18 +26,16 @@ const updateUserReview = async (req, res, next) => {
     newReview.updatedAt = formattedDate;
 
     const review = await Review.findOneAndUpdate(
-      { name: req.user.name },
+      { userID: req.user._id },
       newReview
-    );
+    ).populate("owner", "avatarURL name");
 
     res.status(201).json({
       _id: review._id,
-      userId: review.userID,
-      name: review.name,
       text: review.text,
       rating: review.rating,
-      avatarURL: review.avatarURL,
       createdAt: review.createdAt,
+      owner: review.owner,
       ...newReview,
     });
   } catch (error) {

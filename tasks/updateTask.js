@@ -3,9 +3,8 @@ const { addTaskSchema } = require("../models/tasks");
 const updateTaskData = require("./index");
 
 const updateTask = async (req, res, next) => {
-  const id = req.params.Id;
-  const body = req.body;
   try {
+    const id = req.params.Id;
     const newData = req.body;
     const { error } = addTaskSchema.validate(newData);
     if (error) {
@@ -15,7 +14,7 @@ const updateTask = async (req, res, next) => {
       return;
     }
 
-    const task = await updateTaskData(id, body);
+    const task = await updateTaskData(id, req.body);
 
     if (!task) {
       res.status(404).json({ message: "Not found" });

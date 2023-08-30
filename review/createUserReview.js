@@ -24,17 +24,25 @@ const createUserReview = async (req, res, next) => {
     }
 
     const review = {
-      name: req.user.name,
-      userID: req.user._id,
+      owner: req.user._id,
       text: req.body.text,
       rating: req.body.rating,
-      avatarURL: req.user.avatarURL,
       createdAt: formattedDate,
     };
 
     const createdReview = await Review.create(review);
 
-    res.status(201).json(createdReview);
+    res.status(201).json({
+      text: req.body.text,
+      rating: req.body.rating,
+      createdAt: formattedDate,
+      updatedAt: createdReview.updatedAt,
+      owner: {
+        name: req.user.name,
+        avatarURL: req.user.avatarURL,
+        _id: req.user._id,
+      },
+    });
   } catch (error) {
     console.error("Error creating user", error);
     res.status(error.status).json(error.message);
