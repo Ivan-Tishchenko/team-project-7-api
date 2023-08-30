@@ -7,10 +7,10 @@ const updateUserReview = async (req, res, next) => {
     const { rating, text } = req.body;
 
     if (rating) {
-      if (!["1", "2", "3", "4", "5"].includes(rating)) {
+      if (![1, 2, 3, 4, 5].includes(rating)) {
         res.status(400).json({
           message:
-            "rating is not valid. must be one of ['1', '2', '3', '4', '5']",
+            "rating is not valid. must be one of [1,2,3,4,5]",
         });
         return;
       }

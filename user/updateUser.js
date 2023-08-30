@@ -50,7 +50,7 @@ const updateUser = async (req, res, next) => {
     updateData.updatedAt = formattedDate;
 
     if (!isUpdateNeed) {
-      res.status(400).json({ message: "bad request" });
+      res.status(201).json({ ...updateData });
     }
 
     await User.findOneAndUpdate(

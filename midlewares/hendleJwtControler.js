@@ -42,7 +42,7 @@ const hendleJwtControler = async (req, res, next) => {
     });
   } catch (error) {
     console.error("Error creating user", error);
-    res.status(error.status).json(error.message);
+    return res.status(error.status).json(error.message);
   }
 };
 
