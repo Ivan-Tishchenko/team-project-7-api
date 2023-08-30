@@ -32,10 +32,6 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    owner: {
-      type: Schema.Types.ObjectId,
-      ref: "user",
-    },
     phone: {
       type: String,
       default: null,

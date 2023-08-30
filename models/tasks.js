@@ -2,15 +2,16 @@ const { Schema, model } = require("mongoose");
 
 const Joi = require("joi");
 
-const DATE_PATTERN =
-  /^(\d{1,2})(\/|-)(\d{1,2})(\/|-)(\d{4})$/;
+const dataPattern =
+  /^(\d{4})(\/|-)(\d{1,2})(\/|-)(\d{1,2})$/;
+const timePattern = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
 
 const addTaskSchema = Joi.object({
   title: Joi.string().max(250).required(),
-  start: Joi.string().required(),
-  end: { type: String, required: true },
+  start: Joi.string().pattern(timePattern).required(),
+  end: Joi.string().pattern(timePattern).required(),
   priority: Joi.string().required(),
-  date: Joi.string().pattern(DATE_PATTERN).required(),
+  date: Joi.string().pattern(dataPattern).required(),
   category: Joi.string().required(),
 });
 
@@ -23,9 +24,14 @@ const taskSchema = new Schema(
     },
     start: {
       type: String,
+      match: timePattern,
       required: true,
     },
-    end: { type: String, required: true },
+    end: {
+      type: String,
+      match: timePattern,
+      required: true,
+    },
     priority: {
       type: String,
       enum: ["low", "medium", "high"],
@@ -33,7 +39,7 @@ const taskSchema = new Schema(
     },
     date: {
       type: String,
-      match: DATE_PATTERN,
+      match: dataPattern,
       required: true,
     },
     category: {
