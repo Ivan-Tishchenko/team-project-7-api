@@ -6,11 +6,15 @@ const createJWT = (payload) => {
 };
 
 const verificationJWT = (token) => {
-  const isJwtTrue = jwt.verify(
-    token,
-    process.env.SECRET_WORD
-  );
-  return isJwtTrue;
+  try {
+    const isJwtTrue = jwt.verify(
+      token,
+      process.env.SECRET_WORD
+    );
+    return isJwtTrue;
+  } catch (error) {
+    console.error("Error creating user", error);
+  }
 };
 
 const decodeJwt = (token) => {
