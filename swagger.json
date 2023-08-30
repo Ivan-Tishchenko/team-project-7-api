@@ -937,12 +937,13 @@
               "example": "64bbdccc1f9a9abd2d63f28e"
             },
             "owner": {
-            "type": "object",
-            "description": "owner",
-            "example": {
-              "_id": "64bbdccc1f9a9abd2d63f28e",
-              "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg",
-              "name": "Nadiia Doe"
+              "type": "object",
+              "description": "owner",
+              "example": {
+                "_id": "64bbdccc1f9a9abd2d63f28e",
+                "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg",
+                "name": "Nadiia Doe"
+              }
             },
             "rating": {
               "type": "number",
@@ -1006,6 +1007,7 @@
             "maxLength": 300,
             "example": "GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended."
           },
+
           "createdAt": {
             "type": "string",
             "format": "date-time",
@@ -1073,6 +1075,7 @@
             "maxLength": 300,
             "example": "GooseTrack is impressive, the calendar view and filter options make it easy to stay organized and focused. Highly recommended."
           },
+
           "createdAt": {
             "type": "string",
             "format": "date-time",
@@ -1514,5 +1517,4 @@
       }
     }
   }
-}
 }
