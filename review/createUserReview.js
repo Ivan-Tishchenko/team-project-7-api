@@ -14,11 +14,11 @@ const createUserReview = async (req, res, next) => {
 
     if (
       !req.body.rating ||
-      !["1", "2", "3", "4", "5"].includes(req.body.rating)
+      ![1, 2, 3, 4, 5].includes(req.body.rating)
     ) {
       res.status(400).json({
         message:
-          "rating is not valid. must be one of ['1', '2', '3', '4', '5']",
+          "rating is not valid. must be one of [1,2,3,4,5]",
       });
       return;
     }
