@@ -10,6 +10,7 @@ const getUser = async (req, res, next) => {
       updatedAt,
       skype,
       token,
+      _id,
     } = req.user;
     res.json({
       name,
@@ -21,6 +22,7 @@ const getUser = async (req, res, next) => {
       updatedAt,
       skype,
       token,
+      _id,
     });
   } catch (error) {
     console.error("Error creating user", error);

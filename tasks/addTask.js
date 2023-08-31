@@ -10,6 +10,7 @@ const addTask = async (req, res, next) => {
       return;
     }
 
+    // checking the difference between start time and end time
     const [hoursStart, minutesStart] = req.body.start;
     const [hoursEnd, minutesEnd] = req.body.end;
 
@@ -24,9 +25,10 @@ const addTask = async (req, res, next) => {
       return;
     }
 
-    console.log(req.body);
-
-    const task = await Task.create(req.body).populate("owner", "");
+    const task = await Task.create(req.body).populate(
+      "owner",
+      ""
+    );
     res.status(201).json(task);
   } catch (error) {
     console.error("Error adding Task:", error);
