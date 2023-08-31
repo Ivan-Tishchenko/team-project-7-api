@@ -4,7 +4,7 @@ const Joi = require("joi");
 
 const dataPattern =
   /^(\d{4})(\/|-)(\d{1,2})(\/|-)(\d{1,2})$/;
-const timePattern = /^(?:[01]\d|2[0-3]):[0-5]\d$/;
+const timePattern = /^([01]?\d|2[0-3]):([0-5]\d)$/;
 
 const addTaskSchema = Joi.object({
   title: Joi.string().max(250).required(),

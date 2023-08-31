@@ -9,13 +9,25 @@ const updateTask = async (req, res, next) => {
     const [hoursEnd, minutesEnd] = req.body.end;
 
     if (
-      hoursEnd < hoursStart ||
-      (hoursStart === hoursEnd &&
-        minutesStart >= minutesEnd)
+      parseInt(hoursEnd) < parseInt(hoursStart) ||
+      (parseInt(hoursStart) === parseInt(hoursEnd) &&
+        parseInt(minutesStart) >= parseInt(minutesEnd))
     ) {
       res.status(400).json({
         message: "time start must be early than time end",
       });
+      return;
+    }
+
+    if (
+      hoursEnd > 23 ||
+      hoursStart > 23 ||
+      minutesEnd > 59 ||
+      minutesStart > 59
+    ) {
+      res
+        .status(400)
+        .json({ message: "start or end tim not valid" });
       return;
     }
 
