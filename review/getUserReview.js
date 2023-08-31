@@ -5,18 +5,13 @@ const getUserReview = async (req, res, next) => {
     owner: req.user._id,
   }).populate("owner", "avatarURL name");
 
-  const { _id, rating, text, owner, createdAt, updatedAt } =
-    review;
-
-  console.log(req.user._id);
-
   res.status(200).json({
-    _id,
-    rating,
-    text,
-    owner,
-    createdAt,
-    updatedAt,
+    _id: review?._id,
+    rating: review?.rating,
+    text: review?.text,
+    owner: review?.owner,
+    createdAt: review?.createdAt,
+    updatedAt: review?.updatedAt,
   });
 };
 

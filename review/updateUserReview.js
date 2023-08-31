@@ -26,7 +26,7 @@ const updateUserReview = async (req, res, next) => {
     newReview.updatedAt = formattedDate;
 
     const review = await Review.findOneAndUpdate(
-      { userID: req.user._id },
+      { owner: req.user._id },
       newReview
     ).populate("owner", "avatarURL name");
 
