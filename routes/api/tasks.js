@@ -13,8 +13,8 @@ router.get("/", hendleJwtControler, getAllTask);
 
 router.post("/", hendleJwtControler, addTask);
 
-router.delete("/:Id", hendleJwtControler, deleteTask);
+router.delete("/:taskId", hendleJwtControler, deleteTask);
 
-router.patch("/:Id", hendleJwtControler, updateTask);
+router.patch("/:taskId", hendleJwtControler, updateTask);
 
 module.exports = router;

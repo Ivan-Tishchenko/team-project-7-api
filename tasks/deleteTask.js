@@ -1,14 +1,20 @@
 const { Task } = require("../models/tasks");
 
 const deleteTask = async (req, res, next) => {
-  const task = await Task.findOneAndDelete({
-    _id: req.params.Id,
-  });
-  if (task) {
-    res.send(task);
-  } else {
-    res.status(404);
-    res.send({ message: "Not found" });
+  try {
+    const task = await Task.findOneAndDelete({
+      _id: req.params.taskId,
+    });
+    console.log(task);
+    if (task) {
+      res.status(204).send();
+    } else {
+      res.status(404);
+      res.send({ message: "Not found" });
+    }
+  } catch (error) {
+    console.error("Error adding Task:", error);
+    res.status(500).json({ message: "Error adding Task" });
   }
 };
 
