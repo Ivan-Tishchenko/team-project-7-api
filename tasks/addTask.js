@@ -26,13 +26,36 @@ const addTask = async (req, res, next) => {
       return;
     }
 
+    // formating current date
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString();
+
+    // add createdAT and updatedAt and owner
+    req.body.createdAt = formattedDate;
+    req.body.updatedAt = formattedDate;
+    req.body.owner = req.user._id;
+
     // create task
     const task = await Task.create(req.body);
 
-    // response 
-    task.owner.avatarURL = req.user.avatarURL;
+    // response
+    const responseTask = {
+      title: task.title,
+      start: task.start,
+      end: task.end,
+      priority: task.priority,
+      date: task.date,
+      category: task.category,
+      createdAt: task.createdAt,
+      updatedAt: task.updatedAt,
+      _id: task._id,
+      owner: {
+        _id: task.owner,
+        avatarURL: req.user.avatarURL,
+      },
+    };
 
-    res.status(201).json(task);
+    res.status(201).json(responseTask);
   } catch (error) {
     console.error("Error adding Task:", error);
     res.status(500).json({ message: "Error adding Task" });
