@@ -47,6 +47,18 @@ const taskSchema = new Schema(
       enum: ["to-do", "in-progress", "done"],
       required: true,
     },
+    createdAt: {
+      type: Date,
+      required: [true, "created at is required"],
+    },
+    updatedAt: {
+      type: Date,
+      default: null,
+    },
+    owner: {
+      type: Schema.Types.ObjectId,
+      ref: "users",
+    },
   },
   {
     versionKey: false,
