@@ -1,10 +1,29 @@
-const { addTaskSchema } = require("../models/tasks");
+const { addTaskSchema, Task } = require("../models/tasks");
 
 const updateTaskData = require("./index");
 
 const updateTask = async (req, res, next) => {
   try {
-    const id = req.params.Id;
+    // checking the difference between start time and end time
+    const [hoursStart, minutesStart] = req.body.start;
+    const [hoursEnd, minutesEnd] = req.body.end;
+
+    if (
+      hoursEnd < hoursStart ||
+      (hoursStart === hoursEnd &&
+        minutesStart >= minutesEnd)
+    ) {
+      res.status(400).json({
+        message: "time start must be early than time end",
+      });
+      return;
+    }
+
+    // formating current date
+    const currentDate = new Date();
+    const formattedDate = currentDate.toISOString();
+
+    // validate reqest body
     const newData = req.body;
     const { error } = addTaskSchema.validate(newData);
     if (error) {
@@ -14,14 +33,40 @@ const updateTask = async (req, res, next) => {
       return;
     }
 
-    const task = await updateTaskData(id, req.body);
+    // set updatedAt
+    newData.updatedAt = formattedDate;
 
+    // update task
+    const _id = req.params.taskId;
+    const task = await Task.findOneAndUpdate(
+      { _id },
+      newData
+    ).populate("owner", "avatarURL");
+
+    // test task existence
     if (!task) {
       res.status(404).json({ message: "Not found" });
       return;
     }
 
-    res.status(200).json(task);
+    // response
+    const responseTask = {
+      title: task.title,
+      start: task.start,
+      end: task.end,
+      priority: task.priority,
+      date: task.date,
+      category: task.category,
+      createdAt: task.createdAt,
+      updatedAt: task.updatedAt,
+      _id: task._id,
+      owner: task.owner,
+    };
+
+    res.status(200).json({
+      ...responseTask,
+      ...newData,
+    });
   } catch (error) {
     console.error("Error updating task:", error);
     res
