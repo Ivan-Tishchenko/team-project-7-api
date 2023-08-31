@@ -28,6 +28,7 @@ const createUserReview = async (req, res, next) => {
       text: req.body.text,
       rating: req.body.rating,
       createdAt: formattedDate,
+      updatedAt: formattedDate,
     };
 
     const createdReview = await Review.create(review);

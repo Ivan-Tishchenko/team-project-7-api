@@ -36,6 +36,7 @@ const setUser = async (req, res, next) => {
       avatarURL,
       token: null,
       createdAt: formattedDate,
+      updatedAt: formattedDate,
     };
 
     const { _id } = await User.create(userData);

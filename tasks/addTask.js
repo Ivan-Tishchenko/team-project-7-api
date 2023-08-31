@@ -2,6 +2,7 @@ const { Task, addTaskSchema } = require("../models/tasks");
 
 const addTask = async (req, res, next) => {
   try {
+    // validation reqest body
     const { error } = addTaskSchema.validate(req.body);
     if (error) {
       res
@@ -25,10 +26,12 @@ const addTask = async (req, res, next) => {
       return;
     }
 
-    const task = await Task.create(req.body).populate(
-      "owner",
-      ""
-    );
+    // create task
+    const task = await Task.create(req.body);
+
+    // response 
+    task.owner.avatarURL = req.user.avatarURL;
+
     res.status(201).json(task);
   } catch (error) {
     console.error("Error adding Task:", error);
