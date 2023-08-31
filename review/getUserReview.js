@@ -5,7 +5,19 @@ const getUserReview = async (req, res, next) => {
     owner: req.user._id,
   }).populate("owner", "avatarURL name");
 
-  res.status(200).json(review);
+  const { _id, rating, text, owner, createdAt, updatedAt } =
+    review;
+
+  console.log(req.user._id);
+
+  res.status(200).json({
+    _id,
+    rating,
+    text,
+    owner,
+    createdAt,
+    updatedAt,
+  });
 };
 
 module.exports = getUserReview;
