@@ -185,7 +185,7 @@
           "description": "User object with updated information",
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateUserRequest"
               }
@@ -863,8 +863,8 @@
             "description": "User's new telegram login",
             "example": "newtelegramusername"
           },
-          "avatarURL": {
-            "type": "string",
+          "avatar": {
+            "type": "file",
             "description": "User's new avatarURL",
             "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           }
@@ -1205,9 +1205,12 @@
               "enum": ["to-do", "in-progress", "done"]
             },
             "owner": {
-              "type": "string",
+              "type": "object",
               "description": "Task's owner ID",
-              "example": "64bbdccc1f9a9abd2d63f28e"
+              "example": {
+                "_id": "64bbdccc1f9a9abd2d63f28e",
+                "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg"
+              }
             },
             "createdAt": {
               "type": "string",
@@ -1320,9 +1323,12 @@
             "enum": ["to-do", "in-progress", "done"]
           },
           "owner": {
-            "type": "string",
+            "type": "object",
             "description": "Task's owner ID",
-            "example": "64bbdccc1f9a9abd2d63f28e"
+            "example": {
+              "_id": "64bbdccc1f9a9abd2d63f28e",
+              "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg"
+            }
           },
           "createdAt": {
             "type": "string",
@@ -1426,9 +1432,12 @@
             "enum": ["to-do", "in-progress", "done"]
           },
           "owner": {
-            "type": "string",
+            "type": "object",
             "description": "Task's owner ID",
-            "example": "64bbdccc1f9a9abd2d63f28e"
+            "example": {
+              "_id": "64bbdccc1f9a9abd2d63f28e",
+              "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg"
+            }
           },
           "createdAt": {
             "type": "string",
@@ -1490,9 +1499,12 @@
             "enum": ["to-do", "in-progress", "done"]
           },
           "owner": {
-            "type": "string",
+            "type": "object",
             "description": "Task's owner ID",
-            "example": "64bbdccc1f9a9abd2d63f28e"
+            "example": {
+              "_id": "64bbdccc1f9a9abd2d63f28e",
+              "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg"
+            }
           },
           "createdAt": {
             "type": "string",
