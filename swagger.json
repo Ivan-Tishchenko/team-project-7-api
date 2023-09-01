@@ -650,11 +650,11 @@
             "description": "User's birthday in format DD/MM/YYYY",
             "example": "25/08/1995"
           },
-          "skype": {
+          "telegram": {
             "type": "string",
             "default": null,
-            "description": "User's Skype login",
-            "example": "skypeusername"
+            "description": "User's telegram login",
+            "example": "telegramusername"
           },
           "avatarURL": {
             "type": "string",
@@ -735,11 +735,11 @@
             "description": "User's birthday in format DD/MM/YYYY",
             "example": "25/08/1995"
           },
-          "skype": {
+          "telegram": {
             "type": "string",
             "default": null,
-            "description": "User's Skype login",
-            "example": "skypeusername"
+            "description": "User's telegram login",
+            "example": "telegramusername"
           },
           "avatarURL": {
             "type": "string",
@@ -800,11 +800,11 @@
             "description": "User's birthday in format DD/MM/YYYY",
             "example": "25/08/1995"
           },
-          "skype": {
+          "telegram": {
             "type": "string",
             "default": null,
-            "description": "User's Skype login",
-            "example": "skypeusername"
+            "description": "User's telegram login",
+            "example": "telegramusername"
           },
           "avatarURL": {
             "type": "string",
@@ -858,10 +858,10 @@
             "description": "User's new birthday in format DD/MM/YYYY",
             "example": "25/08/1995"
           },
-          "skype": {
+          "telegram": {
             "type": "string",
-            "description": "User's new Skype login",
-            "example": "newskypeusername"
+            "description": "User's new telegram login",
+            "example": "newtelegramusername"
           },
           "avatarURL": {
             "type": "string",
@@ -902,10 +902,10 @@
             "description": "User's updated birthday in format DD/MM/YYYY",
             "example": "25/08/1995"
           },
-          "skype": {
+          "telegram": {
             "type": "string",
-            "description": "User's updated Skype login",
-            "example": "skypeusername"
+            "description": "User's updated telegram login",
+            "example": "telegramusername"
           },
           "avatarURL": {
             "type": "string",

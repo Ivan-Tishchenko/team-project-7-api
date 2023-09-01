@@ -1,7 +1,5 @@
 const { addTaskSchema, Task } = require("../models/tasks");
 
-const updateTaskData = require("./index");
-
 const updateTask = async (req, res, next) => {
   try {
     // checking the difference between start time and end time

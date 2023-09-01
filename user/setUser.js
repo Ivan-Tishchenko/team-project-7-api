@@ -57,7 +57,7 @@ const setUser = async (req, res, next) => {
       email: req.body.email,
       phone: user.phone,
       birthday: user.birthday,
-      skype: user.skype,
+      telegram: user.telegram,
       avatarURL,
       token,
       createdAt: user.createdAt,
