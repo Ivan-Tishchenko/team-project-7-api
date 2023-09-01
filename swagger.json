@@ -12,7 +12,7 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "servers": [
-    { "url": "https://group-project-7.onrender.com" }
+    { "url": "https://group-project-7.onrender.com/api" }
   ],
   "tags": [
     {
@@ -33,7 +33,7 @@
     }
   ],
   "paths": {
-    "/api/auth/register": {
+    "/auth/register": {
       "post": {
         "tags": ["Auth"],
         "summary": "User registration",
@@ -75,7 +75,7 @@
         }
       }
     },
-    "/api/auth/login": {
+    "/auth/login": {
       "post": {
         "tags": ["Auth"],
         "summary": "User authentication",
@@ -117,7 +117,7 @@
         }
       }
     },
-    "/api/auth/logout": {
+    "/auth/logout": {
       "post": {
         "tags": ["Auth"],
         "summary": "User logout",
@@ -139,7 +139,7 @@
         }
       }
     },
-    "/api/users/current": {
+    "/users/current": {
       "get": {
         "tags": ["Users"],
         "summary": "Get current user",
@@ -175,7 +175,7 @@
         }
       }
     },
-    "/api/users/edit": {
+    "/users/edit": {
       "patch": {
         "tags": ["Users"],
         "summary": "Update user's data",
@@ -222,7 +222,7 @@
         }
       }
     },
-    "/api/reviews": {
+    "/reviews": {
       "get": {
         "tags": ["Reviews"],
         "summary": "Get all reviews",
@@ -258,7 +258,7 @@
         }
       }
     },
-    "/api/reviews/own": {
+    "/reviews/own": {
       "get": {
         "tags": ["Reviews"],
         "summary": "Get own review",
@@ -412,7 +412,7 @@
         }
       }
     },
-    "/api/tasks": {
+    "/tasks": {
       "get": {
         "tags": ["Tasks"],
         "summary": "Get tasks for the month",
@@ -493,7 +493,7 @@
         }
       }
     },
-    "/api/tasks/{taskId}": {
+    "/tasks/{taskId}": {
       "patch": {
         "tags": ["Tasks"],
         "summary": "Update task",
