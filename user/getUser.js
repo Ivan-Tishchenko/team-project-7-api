@@ -8,7 +8,7 @@ const getUser = async (req, res, next) => {
       birthday,
       createdAt,
       updatedAt,
-      skype,
+      telegram,
       token,
       _id,
     } = req.user;
@@ -20,7 +20,7 @@ const getUser = async (req, res, next) => {
       birthday,
       createdAt,
       updatedAt,
-      skype,
+      telegram,
       token,
       _id,
     });

@@ -12,7 +12,7 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "servers": [
-    { "url": "https://group-project-7.onrender.com" }
+    { "url": "https://group-project-7.onrender.com/api" }
   ],
   "tags": [
     {
@@ -33,7 +33,7 @@
     }
   ],
   "paths": {
-    "/api/auth/register": {
+    "/auth/register": {
       "post": {
         "tags": ["Auth"],
         "summary": "User registration",
@@ -75,7 +75,7 @@
         }
       }
     },
-    "/api/auth/login": {
+    "/auth/login": {
       "post": {
         "tags": ["Auth"],
         "summary": "User authentication",
@@ -117,7 +117,7 @@
         }
       }
     },
-    "/api/auth/logout": {
+    "/auth/logout": {
       "post": {
         "tags": ["Auth"],
         "summary": "User logout",
@@ -139,7 +139,7 @@
         }
       }
     },
-    "/api/users/current": {
+    "/users/current": {
       "get": {
         "tags": ["Users"],
         "summary": "Get current user",
@@ -175,7 +175,7 @@
         }
       }
     },
-    "/api/users/edit": {
+    "/users/edit": {
       "patch": {
         "tags": ["Users"],
         "summary": "Update user's data",
@@ -185,7 +185,7 @@
           "description": "User object with updated information",
           "required": true,
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateUserRequest"
               }
@@ -222,7 +222,7 @@
         }
       }
     },
-    "/api/reviews": {
+    "/reviews": {
       "get": {
         "tags": ["Reviews"],
         "summary": "Get all reviews",
@@ -258,7 +258,7 @@
         }
       }
     },
-    "/api/reviews/own": {
+    "/reviews/own": {
       "get": {
         "tags": ["Reviews"],
         "summary": "Get own review",
@@ -412,7 +412,7 @@
         }
       }
     },
-    "/api/tasks": {
+    "/tasks": {
       "get": {
         "tags": ["Tasks"],
         "summary": "Get tasks for the month",
@@ -493,7 +493,7 @@
         }
       }
     },
-    "/api/tasks/{taskId}": {
+    "/tasks/{taskId}": {
       "patch": {
         "tags": ["Tasks"],
         "summary": "Update task",
@@ -650,11 +650,11 @@
             "description": "User's birthday in format DD/MM/YYYY",
             "example": "25/08/1995"
           },
-          "skype": {
+          "telegram": {
             "type": "string",
             "default": null,
-            "description": "User's Skype login",
-            "example": "skypeusername"
+            "description": "User's telegram login",
+            "example": "telegramusername"
           },
           "avatarURL": {
             "type": "string",
@@ -735,11 +735,11 @@
             "description": "User's birthday in format DD/MM/YYYY",
             "example": "25/08/1995"
           },
-          "skype": {
+          "telegram": {
             "type": "string",
             "default": null,
-            "description": "User's Skype login",
-            "example": "skypeusername"
+            "description": "User's telegram login",
+            "example": "telegramusername"
           },
           "avatarURL": {
             "type": "string",
@@ -800,11 +800,11 @@
             "description": "User's birthday in format DD/MM/YYYY",
             "example": "25/08/1995"
           },
-          "skype": {
+          "telegram": {
             "type": "string",
             "default": null,
-            "description": "User's Skype login",
-            "example": "skypeusername"
+            "description": "User's telegram login",
+            "example": "telegramusername"
           },
           "avatarURL": {
             "type": "string",
@@ -858,13 +858,13 @@
             "description": "User's new birthday in format DD/MM/YYYY",
             "example": "25/08/1995"
           },
-          "skype": {
+          "telegram": {
             "type": "string",
-            "description": "User's new Skype login",
-            "example": "newskypeusername"
+            "description": "User's new telegram login",
+            "example": "newtelegramusername"
           },
-          "avatarURL": {
-            "type": "string",
+          "avatar": {
+            "type": "file",
             "description": "User's new avatarURL",
             "example": "31f3bfggn51fh32133jm312cfg13.jpg"
           }
@@ -902,10 +902,10 @@
             "description": "User's updated birthday in format DD/MM/YYYY",
             "example": "25/08/1995"
           },
-          "skype": {
+          "telegram": {
             "type": "string",
-            "description": "User's updated Skype login",
-            "example": "skypeusername"
+            "description": "User's updated telegram login",
+            "example": "telegramusername"
           },
           "avatarURL": {
             "type": "string",
@@ -1205,9 +1205,12 @@
               "enum": ["to-do", "in-progress", "done"]
             },
             "owner": {
-              "type": "string",
+              "type": "object",
               "description": "Task's owner ID",
-              "example": "64bbdccc1f9a9abd2d63f28e"
+              "example": {
+                "_id": "64bbdccc1f9a9abd2d63f28e",
+                "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg"
+              }
             },
             "createdAt": {
               "type": "string",
@@ -1320,9 +1323,12 @@
             "enum": ["to-do", "in-progress", "done"]
           },
           "owner": {
-            "type": "string",
+            "type": "object",
             "description": "Task's owner ID",
-            "example": "64bbdccc1f9a9abd2d63f28e"
+            "example": {
+              "_id": "64bbdccc1f9a9abd2d63f28e",
+              "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg"
+            }
           },
           "createdAt": {
             "type": "string",
@@ -1426,9 +1432,12 @@
             "enum": ["to-do", "in-progress", "done"]
           },
           "owner": {
-            "type": "string",
+            "type": "object",
             "description": "Task's owner ID",
-            "example": "64bbdccc1f9a9abd2d63f28e"
+            "example": {
+              "_id": "64bbdccc1f9a9abd2d63f28e",
+              "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg"
+            }
           },
           "createdAt": {
             "type": "string",
@@ -1490,9 +1499,12 @@
             "enum": ["to-do", "in-progress", "done"]
           },
           "owner": {
-            "type": "string",
+            "type": "object",
             "description": "Task's owner ID",
-            "example": "64bbdccc1f9a9abd2d63f28e"
+            "example": {
+              "_id": "64bbdccc1f9a9abd2d63f28e",
+              "avatarURL": "31f3bfggn51fh32133jm312cfg13.jpg"
+            }
           },
           "createdAt": {
             "type": "string",
