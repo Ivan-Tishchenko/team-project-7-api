@@ -3,8 +3,8 @@ const { addTaskSchema, Task } = require("../models/tasks");
 const updateTask = async (req, res, next) => {
   try {
     // checking the difference between start time and end time
-    const [hoursStart, minutesStart] = req.body.start;
-    const [hoursEnd, minutesEnd] = req.body.end;
+    const [hoursStart, minutesStart] = req.body.start.split(":");
+    const [hoursEnd, minutesEnd] = req.body.end.split(":");
 
     if (
       parseInt(hoursEnd) < parseInt(hoursStart) ||
