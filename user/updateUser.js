@@ -2,7 +2,7 @@ const { User } = require("../models/user");
 
 const updateUser = async (req, res, next) => {
   try {
-    const { email, name, phone, birthday, skype } =
+    const { email, name, phone, birthday, telegram } =
       req.body;
 
     const avatarURL = req.file?.path;
@@ -14,7 +14,7 @@ const updateUser = async (req, res, next) => {
       phone: req.user.phone,
       birthday: req.user.birthday,
       updatedAt: req.user.updatedAt,
-      skype: req.user.skype,
+      telegram: req.user.telegram,
     };
 
     let isUpdateNeed = false;
@@ -39,8 +39,8 @@ const updateUser = async (req, res, next) => {
       updateData.birthday = birthday;
       isUpdateNeed = true;
     }
-    if (!!skype && skype !== req.user.skype) {
-      updateData.skype = skype;
+    if (!!telegram && telegram !== req.user.telegram) {
+      updateData.telegram = telegram;
       isUpdateNeed = true;
     }
 
