@@ -12,8 +12,9 @@ const addTask = async (req, res, next) => {
     }
 
     // checking the difference between start time and end time
-    const [hoursStart, minutesStart] = req.body.start;
-    const [hoursEnd, minutesEnd] = req.body.end;
+    const [hoursStart, minutesStart] =
+      req.body.start.split(":");
+    const [hoursEnd, minutesEnd] = req.body.end.split(":");
 
     if (
       parseInt(hoursEnd) < parseInt(hoursStart) ||
@@ -27,10 +28,10 @@ const addTask = async (req, res, next) => {
     }
 
     if (
-      hoursEnd > 23 ||
-      hoursStart > 23 ||
-      minutesEnd > 59 ||
-      minutesStart > 59
+      parseInt(hoursEnd) > 23 ||
+      parseInt(hoursStart) > 23 ||
+      parseInt(minutesStart) > 59 ||
+      parseInt(minutesEnd) > 59
     ) {
       res
         .status(400)
