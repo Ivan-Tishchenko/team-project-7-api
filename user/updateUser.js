@@ -20,6 +20,14 @@ const updateUser = async (req, res, next) => {
     let isUpdateNeed = false;
 
     if (!!email && email !== req.user.email) {
+      const userWithThisEmail = await User.findOne({
+        email,
+      });
+
+      if (userWithThisEmail) {
+        res.status(409).json({ message: "email in use" });
+        return;
+      }
       updateData.email = email;
       isUpdateNeed = true;
     }
