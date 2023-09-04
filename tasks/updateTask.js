@@ -2,8 +2,22 @@ const { addTaskSchema, Task } = require("../models/tasks");
 
 const updateTask = async (req, res, next) => {
   try {
+    const task = await Task.findOne({
+      _id: req.params.taskId,
+    }).populate("owner", "avatarURL");
+    if (
+      req.user._id.id.toString() !==
+      task.owner._id.id.toString()
+    ) {
+      res.status(400).json({
+        message: "authorithed user not owner this task",
+      });
+      return;
+    }
+
     // checking the difference between start time and end time
-    const [hoursStart, minutesStart] = req.body.start.split(":");
+    const [hoursStart, minutesStart] =
+      req.body.start.split(":");
     const [hoursEnd, minutesEnd] = req.body.end.split(":");
 
     if (
@@ -48,29 +62,29 @@ const updateTask = async (req, res, next) => {
 
     // update task
     const _id = req.params.taskId;
-    const task = await Task.findOneAndUpdate(
+    const updatedTask = await Task.findOneAndUpdate(
       { _id },
       newData
     ).populate("owner", "avatarURL");
 
     // test task existence
-    if (!task) {
+    if (!updatedTask) {
       res.status(404).json({ message: "Not found" });
       return;
     }
 
     // response
     const responseTask = {
-      title: task.title,
-      start: task.start,
-      end: task.end,
-      priority: task.priority,
-      date: task.date,
-      category: task.category,
-      createdAt: task.createdAt,
-      updatedAt: task.updatedAt,
-      _id: task._id,
-      owner: task.owner,
+      title: updatedTask.title,
+      start: updatedTask.start,
+      end: updatedTask.end,
+      priority: updatedTask.priority,
+      date: updatedTask.date,
+      category: updatedTask.category,
+      createdAt: updatedTask.createdAt,
+      updatedAt: updatedTask.updatedAt,
+      _id: updatedTask._id,
+      owner: updatedTask.owner,
     };
 
     res.status(200).json({
