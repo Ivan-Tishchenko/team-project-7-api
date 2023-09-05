@@ -49,14 +49,51 @@ const userSchema = new Schema(
 userSchema.post("save", hendleMongodbError);
 
 const joiUserSchema = Joi.object({
-  email: Joi.string().pattern(emailRegexp).required(),
-  password: Joi.string().min(8).required(),
-  name: Joi.string().required(),
+  email: Joi.string()
+    .pattern(emailRegexp)
+    .required()
+    .empty(false)
+    .messages({
+      "string.base": "The email must be a string.",
+      "any.required": "The email field is required.",
+      "string.empty": "The email must not be empty.",
+      "string.pattern.base":
+        "The email must be in format test@gmail.com.",
+    }),
+  password: Joi.string().min(8).required().messages({
+    "string.base": "The password must be a string.",
+    "any.required": "The password field is required.",
+    "string.min": "min length of password must be 8",
+    "string.empty": "The password must not be empty.",
+  }),
+  name: Joi.string().required().empty(false).messages({
+    "string.base": "The name must be a string",
+    "any.required": "the name faild is required",
+  }),
 });
 
 const loginJoiSchema = Joi.object({
-  email: Joi.string().pattern(emailRegexp).required(),
-  password: Joi.string().min(8).required(),
+  email: Joi.string()
+    .pattern(emailRegexp)
+    .required()
+    .empty(false)
+    .messages({
+      "string.base": "The email must be a string.",
+      "any.required": "The email field is required.",
+      "string.empty": "The email must not be empty.",
+      "string.pattern.base":
+        "The email must be in format test@gmail.com.",
+    }),
+  password: Joi.string()
+    .min(8)
+    .required()
+    .empty(false)
+    .messages({
+      "string.base": "The password must be a string.",
+      "any.required": "The password field is required.",
+      "string.min": "min length of password must be 8",
+      "string.empty": "The password must not be empty.",
+    }),
 });
 
 const User = model("users", userSchema);
