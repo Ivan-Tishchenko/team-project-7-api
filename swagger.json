@@ -12,7 +12,9 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "servers": [
-    { "url": "https://group-project-7.onrender.com/api" }
+    {
+      "url": "https://group-project-7.onrender.com/api"
+    }
   ],
   "tags": [
     {
@@ -411,7 +413,7 @@
         }
       }
     },
-    "/tasks": {
+    "/tasks/{date}": {
       "get": {
         "tags": ["Tasks"],
         "summary": "Get tasks for the month",

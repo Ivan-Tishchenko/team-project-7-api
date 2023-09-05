@@ -9,7 +9,7 @@ const hendleJwtControler = require("../../midlewares/hendleJwtControler");
 
 const router = express.Router();
 
-router.get("/", hendleJwtControler, getAllTask);
+router.get("/:date", hendleJwtControler, getAllTask);
 
 router.post("/", hendleJwtControler, addTask);
 
