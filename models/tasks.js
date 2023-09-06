@@ -52,7 +52,7 @@ const addTaskSchema = Joi.object({
     .required()
     .messages({
       "string.base": "The priority must be a string",
-      "string.valid": `The priority must equal one of [${priorityType.join(
+      "string.valid": ` must equal one of [${priorityType.join(
         ", "
       )}]`,
       "any.required": "The priority field a required",
@@ -102,12 +102,12 @@ const taskSchema = new Schema(
             this.end.split(":");
 
           if (
-            this.parseInt(hoursStart) >
-              this.parseInt(hoursEnd) ||
-            (this.parseInt(hoursStart) ===
-              this.parseInt(hoursEnd) &&
-              this.parseInt(minutesStart) >=
-                this.parseInt(minutesEnd))
+            parseInt(hoursStart) >
+              parseInt(hoursEnd) ||
+            (parseInt(hoursStart) ===
+              parseInt(hoursEnd) &&
+              parseInt(minutesStart) >=
+                parseInt(minutesEnd))
           ) {
             return false;
           }

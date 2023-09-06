@@ -62,7 +62,7 @@ router.get(
   "/google/callback",
   passport.authenticate("google", {
     failureRedirect:
-      "https://etopritika.github.io/team-project-7?error=google-auth", // Маршрут для перенаправления при неудачной аутентификации
+      "https://etopritika.github.io/team-project-7", // Маршрут для перенаправления при неудачной аутентификации
   }),
   async function (req, res) {
     // Успешная аутентификация, можете выполнить дополнительные действия и перенаправить пользователя
