@@ -38,6 +38,7 @@ const userSchema = new Schema(
     },
     birthday: { type: String, default: null },
     telegram: { type: String, default: null },
+    skype: { type: String, default: null },
     createdAt: { type: String, default: Date.now() },
     updatedAt: { type: String, default: null },
   },
