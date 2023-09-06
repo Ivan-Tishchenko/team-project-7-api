@@ -1,7 +1,15 @@
-const { Review } = require("../models/review");
+const { Review, reviewJoiSchema } = require("../models/review");
 
 const createUserReview = async (req, res, next) => {
   try {
+    const { error } = reviewJoiSchema.validate(req.body);
+     if (error) {
+       res
+         .status(400)
+         .json({ message: error.details[0].message });
+       return;
+     }
+
     const currentDate = new Date();
     const formattedDate = currentDate.toISOString();
 

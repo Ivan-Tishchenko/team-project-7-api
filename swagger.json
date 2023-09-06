@@ -12,7 +12,9 @@
   "consumes": ["application/json"],
   "produces": ["application/json"],
   "servers": [
-    { "url": "https://group-project-7.onrender.com/api" }
+    {
+      "url": "https://group-project-7.onrender.com/api"
+    }
   ],
   "tags": [
     {
@@ -227,7 +229,6 @@
         "tags": ["Reviews"],
         "summary": "Get all reviews",
         "parameters": [],
-        "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
             "description": "Successful operation",
@@ -412,11 +413,17 @@
         }
       }
     },
-    "/tasks": {
+    "/tasks/{date}": {
       "get": {
         "tags": ["Tasks"],
         "summary": "Get tasks for the month",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "date",
+            "required": true
+          }
+        ],
         "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
@@ -557,7 +564,7 @@
         ],
         "security": [{ "Bearer": [] }],
         "responses": {
-          "204": {
+          "201": {
             "description": "Successful operation",
             "content": {
               "application/json": {

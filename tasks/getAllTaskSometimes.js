@@ -2,11 +2,8 @@ const { Task } = require("../models/tasks");
 
 async function getAllTasks(req, res, next) {
   try {
-    const taskdate = req.params.date;
-
     const tasks = await Task.find({
       owner: req.user._id,
-      date: { $regex: taskdate, $options: "i" },
     }).populate("owner", "avatarURL");
     res.send(tasks);
   } catch (error) {
