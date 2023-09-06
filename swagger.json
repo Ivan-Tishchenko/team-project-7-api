@@ -417,7 +417,13 @@
       "get": {
         "tags": ["Tasks"],
         "summary": "Get tasks for the month",
-        "parameters": [],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "date",
+            "required": true
+          }
+        ],
         "security": [{ "Bearer": [] }],
         "responses": {
           "200": {
@@ -558,7 +564,7 @@
         ],
         "security": [{ "Bearer": [] }],
         "responses": {
-          "204": {
+          "201": {
             "description": "Successful operation",
             "content": {
               "application/json": {

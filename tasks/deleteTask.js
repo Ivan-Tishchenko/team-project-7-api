@@ -18,9 +18,8 @@ const deleteTask = async (req, res, next) => {
     const deletedTask = await Task.findOneAndDelete({
       _id: req.params.taskId,
     });
-    console.log(deletedTask);
     if (deletedTask) {
-      res.status(204).send();
+      res.status(201).json(deletedTask).send();
     } else {
       res.status(404);
       res.send({ message: "Not found" });
