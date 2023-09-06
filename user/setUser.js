@@ -62,6 +62,7 @@ const setUser = async (req, res, next) => {
       token,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
+      skype: user.skype,
     });
   } catch (error) {
     console.error("Error creating user", error);

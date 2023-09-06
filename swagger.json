@@ -663,6 +663,11 @@
             "description": "User's telegram login",
             "example": "telegramusername"
           },
+          "skype": {
+            "type": "string",
+            "description": "User's updated skype login",
+            "example": "skypeusername"
+          },
           "avatarURL": {
             "type": "string",
             "description": "User's avatarURL",
@@ -748,6 +753,11 @@
             "description": "User's telegram login",
             "example": "telegramusername"
           },
+          "skype": {
+            "type": "string",
+            "description": "User's updated skype login",
+            "example": "skypeusername"
+          },
           "avatarURL": {
             "type": "string",
             "description": "User's avatarURL",
@@ -812,6 +822,11 @@
             "default": null,
             "description": "User's telegram login",
             "example": "telegramusername"
+          },
+          "skype": {
+            "type": "string",
+            "description": "User's updated skype login",
+            "example": "skypeusername"
           },
           "avatarURL": {
             "type": "string",
@@ -913,6 +928,11 @@
             "type": "string",
             "description": "User's updated telegram login",
             "example": "telegramusername"
+          },
+          "skype": {
+            "type": "string",
+            "description": "User's updated skype login",
+            "example": "skypeusername"
           },
           "avatarURL": {
             "type": "string",

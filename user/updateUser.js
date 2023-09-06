@@ -21,6 +21,7 @@ const updateUser = async (req, res, next) => {
       birthday: req.user.birthday,
       updatedAt: req.user.updatedAt,
       telegram: req.user.telegram,
+      skype: req.user.skype,
     };
 
     let isUpdateNeed = false;

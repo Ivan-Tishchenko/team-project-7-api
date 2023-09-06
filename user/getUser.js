@@ -11,6 +11,7 @@ const getUser = async (req, res, next) => {
       telegram,
       token,
       _id,
+      skype
     } = req.user;
     res.json({
       name,
@@ -22,7 +23,7 @@ const getUser = async (req, res, next) => {
       updatedAt,
       telegram,
       token,
-      _id,
+      _id,skype
     });
   } catch (error) {
     console.error("Error creating user", error);
